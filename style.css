@@ -208,19 +208,20 @@ img{
 	border: 1px solid silver;
 }
 .bookpage .text{
-	margin:15px;
 	width:290px;
-	height:480px;
 	font-size: 12px;
 	text-align: left;
 	position: absolute;
+	background: url(images/bg-t-image.png) repeat;
 	text-shadow: grey 1px 1px 5px;
+	padding: 15px;
 }
 .bookpage .button{
 	position: absolute;
 	bottom: 10px;
 	left:10px;
 	margin: auto;
+	background: url(images/bg-t-image.png) repeat;
 }
 .bookpage .option{
 	position: relative;
@@ -239,7 +240,7 @@ img{
 	left:10px;
 	margin: auto;
 	text-shadow: grey 2px 2px 5px;
-	background:black;
+	background: url(images/bg-t-image.png) repeat;
 	padding: 2px;
 }
 #header{

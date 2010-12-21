@@ -47,10 +47,25 @@ if($page != ""){
 		$background = 'black';
 	}
 	echo $template['header'].'<div class=bookpage style="background:'.$background.';">';
-	echo '<div class=text >'.$pageXml->text[0];
+	echo '<div class=text ><span style=font-size:13px;font-weight:bold; >'.$pageXml->title[0].'</span><br>'.$pageXml->text[0];
+	if($pageXml->flags){
+		foreach($pageXml->flags->flag as $flag){
+			$_SESSION[$id]['flags'][$flag['name']] = $flag['value']; 		
+		}
+	}
 	if($pageXml->options){
 		foreach($pageXml->options->option as $option){
-			echo "<br/><br/><a style=color:white; href='index.php?page=read&book=".$id."&n=".cleanPath($option['target'])."' class=option >".$option."</a>";		
+			if(!isset($option['true']) and !isset($option['false'])){
+				echo "<br/><br/><a style=color:white; href='index.php?page=read&book=".$id."&n=".cleanPath($option['target'])."' class=option >".$option."</a>";		
+			}else{
+				if(isset($option['true']) and $_SESSION[$id]['flags'][$option['true']] != true){
+					continue;
+				}
+				if(isset($option['false']) and $_SESSION[$id]['flags'][$option['false']] != false){
+					continue;
+				}
+				echo "<br/><br/><a style=color:white; href='index.php?page=read&book=".$id."&n=".cleanPath($option['target'])."' class=option >".$option."</a>";		
+			}
 		}
 	}
 	echo '</div>';
