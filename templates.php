@@ -26,7 +26,10 @@
 
 */
 
-$template = array();
+$template = array('header' => "", 'footer' => '');
+
+if(!isset($_GET['ajax']) || $_GET['ajax'] == 0){
+
 $template['header'] = <<<HEADER
 <html>
 <head>
@@ -44,12 +47,16 @@ $template['header'] = <<<HEADER
 	</div>
 </div>
 <div style="height:85px;">&nbsp;</div>
+<div id="content">
 HEADER;
 
 $template['footer'] = <<<FOOTER
+</div>
 </body>
 </html>
 FOOTER;
+}
+
 $template['read_select'] = <<<READ
 <div class="title">Seleccionar libro a leer</div>
 <br/>
