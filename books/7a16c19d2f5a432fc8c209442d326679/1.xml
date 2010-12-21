@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page id="1.xml">
+  <bgimage>pic_1.jpg</bgimage>
+  <text>Un descubrimiento inesperado...
+
+El día amanece soleado y en calma, pero... ¿qué es lo que se vislumbra a pocas millas? Un barco, sí, pero no cualquier barco... parece sucio e inusitadamente... viejo. En derredor, el horizonte aparece vacío y solitario: no hay otros barcos, otras presencias al margen de tu velero, y ese coloso. Acercas los prismáticos a la cara, y lees con sorpresa la matrícula del buque: "U.S.S. Cyclops". Sencillamente, no puede ser. Recuerdas haber leído antes sobre este buque, pero... Sí, abajo, en el camarote, tienes un libro que comentaba algo sobre él.
+</text>
+  <options>
+    <option target="2.xml">Sigue navegando</option>
+    <option target="4.xml">Ve al camarote a buscar información</option>
+  </options>
+</page>

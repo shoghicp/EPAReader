@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page id="2.xml">
+  <bgimage>pic_2.jpg</bgimage>
+  <text>Frente al Cyclops
+
+El Cyclops está muy cerca, frente a ti. No puedes adivinar cómo es que ha podido llegar hasta tu barco, pero ahí está. Con su vista llenando tu campo de visión, casi fantasmagórica, el anteriormente orgulloso barco de guerra  parece sucio y abandonado. Su estado es penoso, pero su majestuosidad aún impregna el casco, a pesar de no haber sido más que un carguero de carbón, en otros tiempos.</text>
+  <options>
+    <option target="5.xml">Abordar el Cyclops</option>
+    <option target="3.xml">Seguir navegando</option>
+  </options>
+</page>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page id="5.xml">
+  <bgcolor>#EE0000</bgcolor>
+  <bgimage>end.jpg</bgimage>
+  <title>YEP!</title>
+  <text>Pegas un grito y alguien te escucha desde fuera. Se oyen unos ruidos cada vez más cerca. De repente se abre una puerta y una especie de humanoide se acerca rápidamente. Su brazo se acerca hacia a ti y en ese momento pierdes la conciencia.
+
+Oscuridad. Probablemente nunca descubras que te pasó.</text>
+  <score>5</score>
+  <final />
+</page>

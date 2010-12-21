@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page id="1.xml">
+  <bgcolor>#000000</bgcolor>
+  <text>Te despiertas en medio de lo que parece un bosque, aunque no puedes estar seguro porque está todo lleno de plantas y no puedes ver a más de diez metros de distancia. Estás prácticamente seguro de que, hasta ayer, eras una nadadora olímpica china llamada Chin Champú, alta y con el pelo encrespado. Sin embargo, ahora mismo eres un hombre más bien corto de estatura, con un miembro gigantesco y un tatuaje en torno al ombligo que pone "Lee la Inciclopedia y serás mejor persona". ¿Cómo ha pasado esto? ¿Cómo llegaste aquí? ¿Dónde dejaste las llaves del coche? Sólo una cosa está clara: deberías dejar de abusar de las drogas.
+Tus pensamientos se interrumpen al escuchar una risa malvada a tu espalda, justo después de que alguien te toque el culo. Te vuelves a tiempo de ver movimientos entre la vegetación que se van alejando.
+Te duele mucho la cabeza pero no tienes la boca pastosa, así que más que estar resacoso lo que pasa es que te han dado una buena hostia. Tienes un diario enrollado en la mano.</text>
+  <continue target="2.xml">Continuar</continue>
+</page>

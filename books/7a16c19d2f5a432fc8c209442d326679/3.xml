@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page id="3.xml">
+  <bgimage>pic_index.jpg</bgimage>
+  <text>Navegando...
+
+Consternado por la sorpresa, decides continuar navegando, e ignorar lo sucedido. Fijas el rumbo, poniendo proa al horizonte, y dejando a popa todo aquello...
+</text>
+  <options>
+    <option target="1.xml">Seguir navegando</option>
+  </options>
+</page>

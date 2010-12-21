@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page id="5.xml">
+  <bgimage>pic_5.jpg</bgimage>
+  <text>En la cubierta del Cyclops
+
+La cubierta del Cyclops demuestra gran abandono y podedumbre. Sientes una gran sensación de tristeza y soledad, que te planteas si proviene de ti, o el barco lo proyecta sobre tu ánimo. Allá donde mires los poderosos brazos de las antiguas gruas parecen querer abarcar el paisaje. Por supuesto, no hay nadie a tu alrededor, como si se los hubiera tragado la tierra. "O más apropiadamente, el mar..." te corriges a ti mismo.</text>
+  <options>
+    <option target="6.xml">Descender a la segunda cubierta</option>
+    <option target="3.xml">Bajar al bote y seguir navegando</option>
+  </options>
+</page>

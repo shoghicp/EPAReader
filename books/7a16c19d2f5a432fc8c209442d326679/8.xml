@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page id="8.xml">
+  <bgimage>pic_8.jpg</bgimage>
+  <text>Despacho del capataz
+
+La estancia, iluminada por la acción de un ojo de buey, está inmaculadamente limpia y cuidada, en contraste con el resto del barco. Una cajonera de amplia superficie superior, vacía, se encuentra colocada contra la pared. Del resto de la estancia, nada llama tu atención, a pesar de parecer encontrar varios aparatos en perfecto estado. </text>
+  <options>
+    <option target="7.xml">Salir a la bodega</option>
+    <option target="9.xml">Registrar los cajones</option>
+  </options>
+</page>

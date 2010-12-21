@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page id="9.xml">
+  <bgcolor>#000000</bgcolor>
+  <text>Intentas hacer un esfuerzo por recordar, pero no te viene nada a la mente. Sólo recuerdas despertar en esta extraña jaula colgante. No sabes ni donde estas, ni como llegaste a ese sitio...</text>
+  <continue target="16.xml">Continuar</continue>
+</page>

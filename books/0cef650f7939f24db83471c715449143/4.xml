@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page id="4.xml">
+  <bgcolor>#000000</bgcolor>
+  <bgimage>sobre.jpg</bgimage>  
+  <text>Comienzas a examinar el banco de madera en el que estás sentado. Encima de el encuentras un sobre.</text>
+  <options>
+    <option target="7.xml">Mirar el sobre</option>
+    <option target="8.xml">Levantarme y buscar una salida</option>
+    <option target="9.xml">Intentar recordar</option>
+  </options>
+</page>

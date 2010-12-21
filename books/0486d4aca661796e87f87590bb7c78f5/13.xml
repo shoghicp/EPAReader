@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page id="13.xml">
+  <bgcolor>#000000</bgcolor>
+  <text>Intentas por todas las maneras recordar qué era lo que te habían dicho en tus tiempos de explorador sobre estar mucho tiempo alejado del humo, el ruido y las hamburguesas, y no morir en el intento. Lamentablemente, de aquella época apenas recuerdas las tablas de multiplicar, cómo andar en bicicleta (porque eso nunca se olvida) y el aroma de tu vecina cuando jugaban a los médicos.</text>
+  <options>
+	<option target="10.xml">Pasear por el bosque</option>
+	<option target="13.xml">Si quieres pasear por tu barrio, apaga el ordenador y vete a dar una vuelta.</option>
+  </options>
+</page>

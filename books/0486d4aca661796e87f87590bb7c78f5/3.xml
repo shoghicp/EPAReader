@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page id="3.xml">
+  <bgcolor>#000000</bgcolor>
+  <text>Empiezas a golpear brutalmente tu cuerpo con el diario. Sigues haciéndolo durante horas, imbuido de la resistencia que conseguiste mediante un arduo entrenamiento en la adolescencia. Justo antes de que se te canse el brazo aparece un Gnomo ante ti.</text>
+  <options>
+	<option target="4.xml">Tirarle los tejos al Gnomo</option>
+	<option target="5.xml">Reírte de él por ser tan bajito</option>
+  </options>
+</page>

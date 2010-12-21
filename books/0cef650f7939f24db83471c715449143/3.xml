@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page id="3.xml">
+  <bgcolor>#000000</bgcolor>
+  <bgimage>carcel.jpg</bgimage>
+  <text>Comienzas a vislumbrar una especie jaula colgante, muy pequeña. Un pequeño retrete a un lado y un banco de madera donde estás sentado. No parece haber ninguna salida.</text>
+  <options>
+    <option target="4.xml">Examinar el banco</option>
+    <option target="5.xml">Gritar pidiendo ayuda</option>
+    <option target="6.xml">Examinar el retrete</option>    
+  </options>
+</page>

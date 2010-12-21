@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page id="6.xml">
+  <bgcolor>#000000</bgcolor>
+  <text>Estiras el dedo, mientras la furgoneta se va acercando. Cuando la tienes a pocos metros, puedes apreciar que se trata de una furgoneta destartalada, con flores dibujadas a los lados. Tienes suerte, el vehículo se detiene a tu lado. Se abre la puerta trasera y deja escapar una considerable nube de humo. Cuando la "niebla" se disipa, puedes ver dentro a un grupo de hippies fumando cigarritos de la alegría y tocando la guitarra.</text>
+  <options>
+	<option target="7.xml">Recriminar a los jovenzuelos su comportamiento indecoroso e irresponsable</option>
+	<option target="8.xml">Pedirles una calada y subirte a la furgoneta a cantar canciones de Bob Dylan</option>
+  </options>
+</page>

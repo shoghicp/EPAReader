@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page id="7.xml">
+  <bgcolor>#000000</bgcolor>
+  <bgimage>note.jpg</bgimage>
+  <text>Abres el sobre y en su interior encuentras una nota muy deteriorada. Parece haberse escrito hace mucho tiempo. Está en un idioma que no comprendes.</text>
+  <flags>
+    <flag name="note" value="true" />
+  </flags>
+  <options>
+    <option target="8.xml">Intentar recordar algo</option>
+    <option target="10.xml">Seguir mirando la zona</option> 
+  </options>
+  <score>15</score>    
+</page>

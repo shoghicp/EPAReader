@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page id="5.xml">
+  <bgcolor>#000000</bgcolor>
+  <text>Señalas al gnomo y gritas: ¡Qué bicho tan bajito! ¡Tapón! ¡Eres un tapón!. Luego te ríes a carcajadas. El gnomo mira al suelo, se pone a llorar y sale corriendo gritando ¡Yo no quería ser gnomo, quería ser gigante! ¡Buaaaaaaa!. Has vuelto a quedarte solo, y además te sientes culpable por haber hecho pasar un mal rato al entrañable y pequeño barbudo.
+Tras unos minutos en los que das azotes a tí mismo por ser tan malo, escuchas a lo lejos un ruido. En cuanto te acercas, ves que hay una carretera de tierra, por la que se acerca una furgoneta.</text>
+  <options>
+	<option target="6.xml">Hacer "auto-stop" a ver si los de la furgoneta te llevan</option>
+	<option target="6.xml">Estoy perdiendo el tiempo, asi que hago "auto-stop" para irme</option>
+  </options>
+</page>

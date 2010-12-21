@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page id="8.xml">
+  <bgcolor>#000000</bgcolor>
+  <text>Comienzas a examinar los barrotes de la jaula uno por uno, en busca de una salida de ese extraño lugar. En ese momento, escuchas un ruido fuera. Parece una conversación, pero no distingues nada. Cada vez se escucha más cerca.</text>
+  <options>
+    <option target="13.xml">Hacerme el dormido, en el banco</option>
+    <option target="14.xml">Hacerme el muerto, en el suelo</option>
+    <option target="15.xml">Simplemente, esperar</option>
+  </options>
+</page>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page id="15.xml">
+  <bgcolor>#EE0000</bgcolor>
+  <bgimage>darkdoor.jpg</bgimage>
+  <title>YEP!</title>
+  <text>Decides esperar y encontrarte cara a cara con quien quiera que se acerque. Las voces se escuchan cada vez más cerca hasta que se dejan de oir.
+  
+Escuchas un ruido mecánico a tu derecha, alrededor de tu jaula, pero esta tan oscuro que no consigues ver nada.
+  
+Una de las voces comienza a hablar de nuevo, y escuchas sus pasos acercandose a la puerta de la prisión. Un paso detrás de otro, y otro... hasta que se dejan de escuchar.
+  
+De repente, un "click" y una fuerza incontrolable te absorbe hacia atrás. Una lástima que estuvieras de espaldas. Te quedarás sin saber que fue lo que te mató.</text>
+  <score>10</score>
+  <final />
+</page>

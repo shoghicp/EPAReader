@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page id="10.xml">
+  <bgcolor>#000000</bgcolor>
+  <bgimage>simbolo.jpg</bgimage>
+  <text>Continuas mirando la prisión y se te ocurre una idea.
+  
+Con el poco espacio que tienes, intentas mover el banco hacia un lado y parece que encuentras algo. Se trata de una especie de grabado en el suelo, en forma de rectángulo, con un rombo en su interior.
+  
+Intentas pasar tus dedos sobre la superficie del grabado, cuando sientes el ruido metálico de unas bisagras y oyes un ¡click!</text>
+  <options>
+    <option target="18.xml">Empujar el rectángulo hacia abajo</option>
+    <option target="19.xml">Seguir examinando el grabado</option> 
+  </options>
+  <score>5</score>    
+</page>

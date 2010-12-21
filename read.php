@@ -36,7 +36,7 @@ if($page != ""){
 		$page = 1;
 	}
 	$pageXml = simplexml_load_file("books/".$id."/".$page.".xml");
-	if($pageXml->score[0] > 0){
+	if($pageXml->score[0] != 0){
 		$_SESSION[$id]['score'] += $pageXml->score[0];
 	}
 	if($pageXml->bgimage[0] != ""){

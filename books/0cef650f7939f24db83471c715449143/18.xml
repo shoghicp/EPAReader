@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page id="18.xml">
+  <bgcolor>#000000</bgcolor>
+  <text>Empujas el rectángulo hacia abajo y este cede, abriéndose bajo tus pies.
+  
+Rapidamente te aferras a la base de la jaula, quedando colgando al vacío de la misma.
+
+Gran parte del suelo de la jaula cede y cae al vacío, sin embargo, no escuchas nada. Te balanceas de un lado a otro, pero no consigues nada.</text>
+  <options>
+    <option target="17.xml">Soltarte y caer</option>
+    <option target="22.xml">Esperar a que llegue alguien</option> 
+  </options>
+</page>

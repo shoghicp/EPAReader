@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page id="9.xml">
+  <bgimage>pic_9.jpg</bgimage>
+  <text>Diario contable de carga del Cyclops
+
+Un tal George Worley fima junto al capataz extrañas sumas de materiales, que parecen crecer y decrecer a medida que transcurre el tiempo, bajando por la perfectamente alineada columna de números preciosísticamente escritos. Adviertes, sorprendentemente, un movimiento repentino a tus espaldas, y antes de poder girarte del todo, el ruido de un golpe seco resuena en la parte superior de tu cráneo, haciéndote perder, a la vez, el sentido completamente.</text>
+  <options>
+    <option target="10.xml">Un resplandor cegador inunda tu vista...</option>
+  </options>
+</page>

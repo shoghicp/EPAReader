@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page id="5.xml">
+  <bgcolor>#EE0000</bgcolor>
+  <bgimage>fall.jpg</bgimage>
+  <title>YEP!</title>
+  <text>Decides esperar a que llegue alguien antes que dejarte caer a un abismo probablemente infinito.
+  
+Pero pasa el tiempo y nadie llega. ¿Es este tu destino? ¿Colgar de la jaula hasta el fin de la eternidad? Quizás si, o quizás te canses de esperar y un día decidas soltarte. Quien sabe...</text>
+  <score>10</score>
+  <final />
+</page>

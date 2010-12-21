@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page id="6.xml">
+  <bgimage>pic_6.jpg</bgimage>
+  <text>Segunda cubierta
+
+Tu corazón comienza encogerse a medida que desciendes por las cubiertas del barco. Si hasta ahora habías sentido tristeza y soledad, una sensación de miedo y desconsuelo va creciendo dentro de ti. No estás seguro, pero hubieras jurado que una extraña sombra descendía a la bodega.</text>
+  <options>
+    <option target="5.xml">Ascender a la primera cubierta</option>
+    <option target="7.xml">Continuar a la primera bodega</option>
+  </options>
+</page>

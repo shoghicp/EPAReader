@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page id="10.xml">
+  <bgcolor>#000000</bgcolor>
+  <text>Deambulas por el bosque sin rumbo, y no llegas a ninguna parte, sigues tan perdido como al principio.</text>
+  <options>
+	<option target="3.xml">Suicidarse a golpes con el periódico enrollado</option>
+	<option target="11.xml">Seguir deambulando por el bosque sin rumbo</option>
+	<option target="10.xml">Andar en circulos</option>
+  </options>
+</page>

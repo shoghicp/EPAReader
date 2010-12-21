@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page id="2.xml">
+  <bgcolor>#000000</bgcolor>
+  <text>Esto parece una especie de prisión. Hay poca luz y apenas puedes ver lo que hay más allá de tu celda, mientras, pestañeas torpemente varias veces para acostumbrarte a luz de la misma.</text>
+  <continue target="3.xml">Continuar</continue>
+</page>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page id="0.xml">
+  <bgimage>pic_index.jpg</bgimage>
+  <text>Bermudas, noviembre de 1909
+
+Cyclops
+
+Después de múltiples expediciones, se ha hecho realidad el sueño de toda una vida: ser libre. Un velero es la expresión de ese sueño largamente anelado.
+La salida desde Miami, Florida, se saldó con un cielo magníficamente despejado, una brisa agradable, y un horizonte infinito. Nada hacía presagiar el terrible descubrimiento de la mañana siguiente...
+</text>
+  <options>
+    <option target="1.xml">Navega hasta el día siguiente</option>
+  </options>
+</page>

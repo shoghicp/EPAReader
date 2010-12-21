@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page id="20.xml">
+  <bgcolor>#000000</bgcolor>
+  <bgimage>cristal.jpg</bgimage>
+  <title>FIN!</title>
+  <pretext>Continuará...</pretext>
+  <text>En ese momento, la luz ilumina todo el lugar con una intensidad cegadora que te obliga a taparte los ojos.
+  
+Al volver a abrirlos estás en una ciudad. Los edificios de la misma parecen tener una estructura muy extraña... Delante de ti varios cristales azules apuntan hacia arriba.
+</text>
+  <score>15</score>
+  <final />
+</page>

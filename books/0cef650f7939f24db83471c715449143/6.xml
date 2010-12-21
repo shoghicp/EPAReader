@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page id="6.xml">
+  <bgcolor>#000000</bgcolor>
+  <text>Detenidamente, examinas el retrete sin levantarte del banco. No ves nada inusual. Te viene a la cabeza la duda de como estarán conectadas las tuberías del mismo a lo largo de la prisión donde estás.</text>
+  <options>
+    <option target="11.xml">Mirar fuera de la jaula</option>
+    <option target="12.xml">Introducir el brazo entre los barrotes</option>
+  </options>
+</page>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page id="11.xml">
+  <bgcolor>#000000</bgcolor>
+  <text>Andando te tropiezas con una piedra, caes y mueres.</text>
+  <final />
+  <points>50</points>
+</page>

@@ -90,7 +90,7 @@ img{
 }
 .book .sub{
 	position:absolute;
-	top: 30px;
+	top: 45px;
 	font-size:9px;
 	font-weight: normal;
 	margin:auto;
@@ -229,7 +229,8 @@ img{
 	margin: auto;
 	border: 1px solid silver;
 	border-radius: 5px;
-	padding: 5px;
+	padding: 1px;
+	font-size:9px;
 	text-decoration: none;
 	background: transparent;
 	cursor:pointer;
