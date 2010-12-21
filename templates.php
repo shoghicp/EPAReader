@@ -53,6 +53,8 @@ FOOTER;
 $template['read_select'] = <<<READ
 <div class="title">Seleccionar libro a leer</div>
 <br/>
+La libreria tiene {count} libros.
+<br/>
 <ul style="list-style-type: none;">
 {booklist}
 </ul>

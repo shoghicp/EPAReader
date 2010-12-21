@@ -1,0 +1,85 @@
+<?php
+
+/*
+	 _____ ____   _    ____                _           
+	| ____|  _ \ / \  |  _ \ ___  __ _  __| | ___ _ __ 
+	|  _| | |_) / _ \ | |_) / _ \/ _` |/ _` |/ _ \ '__|
+	| |___|  __/ ___ \|  _ <  __/ (_| | (_| |  __/ |   
+	|_____|_| /_/   \_\_| \_\___|\__,_|\__,_|\___|_|   
+
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+ *
+ * @author shoghicp@gmail.com
+ *
+
+*/
+
+$id = addslashes(str_replace('.', '', $_GET['book']));
+if(!isset($_GET['n'])){ $_GET['n'] = ""; }
+$page = addslashes($_GET['n']);
+$infoXml = simplexml_load_file("books/".$id."/info.xml");
+if($page != ""){
+	if($page == "" or $page < 0 ){
+		$page = 1;
+	}
+	$pageXml = simplexml_load_file("books/".$id."/".$page.".xml");
+	if($pageXml->score[0] > 0){
+		$_SESSION[$id]['score'] += $pageXml->score[0];
+	}
+	if($pageXml->bgimage[0] != ""){
+		$background = 'url(books/'.$id.'/'.$pageXml->bgimage[0].') no-repeat';
+	}elseif($pageXml->bgcolor[0] != ""){
+		$background = $pageXml->bgcolor[0];
+	}else{
+		$background = 'black';
+	}
+	echo $template['header'].'<div class=bookpage style="background:'.$background.';">';
+	echo '<div class=text >'.$pageXml->text[0];
+	if($pageXml->options){
+		foreach($pageXml->options->option as $option){
+			echo "<br/><br/><a style=color:white; href='index.php?page=read&book=".$id."&n=".cleanPath($option['target'])."' class=option >".$option."</a>";		
+		}
+	}
+	echo '</div>';
+	if($pageXml->continue[0] != ""){
+		echo "<a style=color:white; href='index.php?page=read&book=".$id."&n=".cleanPath($pageXml->continue[0]['target'])."' class=button >".$pageXml->continue[0]."</a>";
+	}
+	if(isset($pageXml->final[0])){
+		echo '<div class=final >Final del libro.<br/>Tu puntacion es <b>'.$_SESSION[$id]['score'].'</b></div>'; 
+		$_SESSION[$id] = array('score' => 0, 'flags' => array());
+	}
+	echo '</div>'.$template['footer'];
+
+}else{
+	$_SESSION[$id] = array('score' => 0, 'flags' => array());
+	echo $template['header'].'<div class=title >'.$infoXml->title[0].'</div><br/>Pulsa en el libro para empezar a leerlo.<br/>';
+				if($infoXml->image[0] != ""){
+					$img = "<img src='books/".$id."/".$infoXml->image[0]."' width='196'/>";
+				}else{
+					$img = '';
+				}
+				echo '<a href="index.php?page=read&book='.$id.'&n='.str_replace('.xml', '', $infoXml->init[0]) .'" style="text-decoration:none;"><div class="bookg"><div style="background:'.$infoXml->cover[0].';" class=bgcover id=bgcover'.$id.' >&nbsp;</div><div class=main >'.$infoXml->title[0].'</div><div class=sub >'.$infoXml->subtitle[0].'</div><div class=bimg >'.$img.'</div><div class=auth >- '.$infoXml->author[0].' -</div><div class=edition >'.$infoXml->edition[0].'</div></div></a></li>';
+				echo '<br/><div style="width:600px;">'.addslashes($infoXml->description[0]).'</div><br/>';
+				echo '<script type="text/javascript">
+					  $(document).ready(function(){
+					   $(".bgcover").fadeTo(0, 0);
+						$(".bgcover").fadeTo(1000, 0.4);
+					  });
+					</script>';
+	echo $template['footer'];
+}
+
+?>

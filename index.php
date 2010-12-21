@@ -26,7 +26,11 @@
  *
 
 */
+
 session_start();
+if(!is_array($_SESSION)){
+	$_SESSION = array();
+}
 set_time_limit(30);
 ignore_user_abort(0);
 ini_set("expose_php", 0);
@@ -40,29 +44,35 @@ include_once("templates.php");
 if(!isset($_GET['page'])){ $_GET['page'] = ""; }
 switch($_GET['page']){
 	case "read":
-		$books = array();
-		$itemHandler = opendir("./books/");
-			while(($item=readdir($itemHandler)) !== false){
-				if($item == '..' or $item == '../' or $item == '.'){continue;}
-				$id = $item;
-				$item = "./books/".$item;
-				if(is_dir($item)){
-					$xml = simplexml_load_file($item."/info.xml");
-				  $books[] = array('id' => $id, 'desc' => $xml->description[0], 'title' => $xml->title[0], 'subtitle' => $xml->subtitle[0], 'cover' => $xml->cover[0], 'author' => $xml->author[0], 'img' => $xml->image[0]);
+		if(isset($_GET['book'])){
+			include_once("read.php");
+		}else{
+			$books = array();
+			$itemHandler = opendir("./books/");
+				while(($item=readdir($itemHandler)) !== false){
+					if($item == '..' or $item == '../' or $item == '.'){continue;}
+					$id = $item;
+					$item = "./books/".$item;
+					if(is_dir($item)){
+						$xml = simplexml_load_file($item."/info.xml");
+					  $books[] = array('id' => $id, 'desc' => $xml->description[0], 'edition' => $xml->edition[0], 'title' => $xml->title[0], 'subtitle' => $xml->subtitle[0], 'cover' => $xml->cover[0], 'author' => $xml->author[0], 'img' => $xml->image[0]);
+					}
+				   }
+			$array = array('booklist' => '');
+			$count = 0;
+			foreach($books as $arr){
+				if(($count % 4) == 0 and $count > 0){ $array['booklist'] .= '</ul><div style=height:240px; >&nbsp;</div><br/><ul style="list-style-type: none;">';}
+				if($arr['img'] != ""){
+					$img = "<img src='books/".$arr['id']."/".$arr['img']."' width='120'/>";
+				}else{
+					$img = '';
 				}
-			   }
-		$array = array('booklist' => '');
-		$count = 0;
-		foreach($books as $arr){
-			if($count >= 4){ $count = 0; $array['booklist'] .= '</ul><ul style="list-style-type: none;">';}
-			if($arr['img'] != ""){
-				$img = "<img src='books/".$arr['id']."/".$arr['img']."' width='120'/>";
-			}else{
-				$img = '';
+				$array['booklist'] .= '<li style="float: left;"><a href="index.php?page=read&book='.$arr['id'].'" title="'.addslashes($arr['desc']).'" style="text-decoration:none;"><div class="book"><div style="background:'.$arr['cover'].';" class=bgcover id=bgcover'.$arr['id'].' >&nbsp;</div><div class=main >'.$arr['title'].'</div><div class=sub >'.$arr['subtitle'].'</div><div class=bimg >'.$img.'</div><div class=auth >- '.$arr['author'].' -</div><div class=edition >'.$arr['edition'].'</div></div></a></li>';
+				$count++;
 			}
-			$array['booklist'] .= '<li style="float: left;"><a href="index.php?page=read&book='.$arr['id'].'" title="'.addslashes($arr['desc']).'" style="text-decoration:none;"><div class="book"><div style="background:'.$arr['cover'].';" class=bgcover >&nbsp;</div><div class=main >'.$arr['title'].'</div><div class=sub >'.$arr['subtitle'].'</div><div class=bimg >'.$img.'</div><div class=auth >'.$arr['author'].'</div></div></a></li>';
+			$array['count'] = $count;
+			echo $template['header'], parsetemplate($template['read_select'], $array), $template['footer'];
 		}
-		echo $template['header'], parsetemplate($template['read_select'], $array), $template['footer'];
 		break;
 	case "upload":
  		if(!$_POST){header("Location: index.php"); die(); }
@@ -93,5 +103,5 @@ switch($_GET['page']){
 	default:
 		echo $template['header'], $template['index'], $template['footer'];
 }
-
+die();
 ?>

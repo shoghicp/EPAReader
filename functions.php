@@ -26,9 +26,11 @@
 
 */
 
-function parsetemplate ($template, $array)
-{
+function parsetemplate ($template, $array){
 	return preg_replace('#\{([a-z0-9\-_]*?)\}#Ssie', '( ( isset($array[\'\1\']) ) ? $array[\'\1\'] : \'\' );', $template);
 }
 
+function cleanPath($string){
+	return str_replace('.xml', '', $string);
+}
 ?>
