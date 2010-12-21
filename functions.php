@@ -33,4 +33,9 @@ function parsetemplate ($template, $array){
 function cleanPath($string){
 	return str_replace('.xml', '', $string);
 }
+
+function xml_attribute($object, $attribute){
+    if(isset($object[$attribute]))
+        return (string) $object[$attribute];
+}
 ?>

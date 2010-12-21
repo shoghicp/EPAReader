@@ -47,10 +47,10 @@ if($page != ""){
 		$background = 'black';
 	}
 	echo $template['header'].'<div class=bookpage style="background:'.$background.';">';
-	echo '<div class=text ><span style=font-size:13px;font-weight:bold; >'.$pageXml->title[0].'</span><br>'.$pageXml->text[0];
+	echo '<div class=text ><span style=font-size:13px;font-weight:bold; >'.$pageXml->title[0].'</span><br>'.$pageXml->text[0].'<br><span style=font-size:10px; >'.$pageXml->pretext .'</span>';
 	if($pageXml->flags){
 		foreach($pageXml->flags->flag as $flag){
-			$_SESSION[$id]['flags'][$flag['name']] = $flag['value']; 		
+			$_SESSION[$id]['flags'][xml_attribute($flag, 'name')] = xml_attribute($flag, 'value'); 		
 		}
 	}
 	if($pageXml->options){
