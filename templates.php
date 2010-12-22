@@ -36,6 +36,7 @@ $template['header'] = <<<HEADER
 <title>EPAReader &bull; Lector de libros "Elige tu propia aventura"</title>
 <link rel="stylesheet" type="text/css" href="style.css" />
 <script type="text/javascript" src="jquery.js"></script>
+<!-- {meta} -->
 </head>
 <body>
 <div id="header">
@@ -46,7 +47,7 @@ $template['header'] = <<<HEADER
 		<a href="index.php?page=read">Leer</a>
 	</div>
 </div>
-<div style="height:85px;">&nbsp;</div>
+<div id="margin" style="height:85px;">&nbsp;</div>
 <div id="content">
 HEADER;
 

@@ -33,7 +33,9 @@ body{
 	color: white;
 	font-family: Helvetica, Verdana, sans-serif;
 }
-
+html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 {
+    -webkit-text-size-adjust:none;
+}
 img{
 	border: 0px;
 }
