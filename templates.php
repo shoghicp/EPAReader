@@ -36,14 +36,17 @@ $template['header'] = <<<HEADER
 <title>EPAReader &bull; Lector de libros "Elige tu propia aventura"</title>
 <link rel="stylesheet" type="text/css" href="style.css" />
 <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="functions.js"></script>
 <!-- {meta} -->
 </head>
 <body>
 <div id="header">
 	<div id="text-left">EPAReader</div>
 	<div id="menu">
-		<a href="index.php">Nuevo</a>
-		&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="index.php">Inicio</a>
+		&nbsp;&nbsp;
+		<a href="index.php?page=new">Nuevo</a>
+		&nbsp;&nbsp;
 		<a href="index.php?page=read">Leer</a>
 	</div>
 </div>
@@ -57,6 +60,13 @@ $template['footer'] = <<<FOOTER
 </html>
 FOOTER;
 }
+$template['index'] = <<<INDEX
+<div class="title">Inicio</div>
+<br/>
+<input type="button" class="button big" style="color:white;" onclick="go('index.php?page=new');" value="Nuevo"/>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="button" class="button big" style="color:white;" onclick="go('index.php?page=read');" value="Leer"/>
+INDEX;
 
 $template['read_select'] = <<<READ
 <div class="title">Seleccionar libro a leer</div>
@@ -74,9 +84,8 @@ La libreria tiene {count} libros.
 </script>
 READ;
 
-$template['index'] = <<<INDEX
+$template['new'] = <<<NEW
 <div class="title">Enviar nuevo Libro EPA</div>
-
 <br/>
 <form action="index.php?page=upload" method="post" enctype="multipart/form-data">
 <input type="hidden" name="MAX_FILE_SIZE" value="10000000">
@@ -86,6 +95,33 @@ Libro: <input name="book_file" type="file"/>
 <br/>
 <input type="submit" value="Enviar" style="color:white;" class="button"/>
 </form>
-INDEX;
+<br/><br/>
+<div class="title">Crear nuevo Libro EPA</div>
+<br/>
+<form action="index.php?page=create" method="post"enctype="multipart/form-data">
+<input type="hidden" name="MAX_FILE_SIZE" value="10000000">
+<table>
+<tr>
+<th style="text-decoration:underline;">Obligatorio</th><td></td></tr><tr>
+<td>Titulo</td><td><input name="book_title" type="text"/></td>
+</tr><tr>
+<td>Autor</td><td><input name="book_author" type="text"/></td>
+</tr><tr>
+<td>Descripcion</td><td><textarea name="book_description"></textarea></td>
+</tr><tr>
+<td>Edicion</td><td><input name="book_edition" type="text"/></td>
+</tr><tr>
+<td>EPA Ver</td><td>$EPA_VERSION</td>
+</tr><td></td></tr><tr>
+<th style="text-decoration:underline;">Opcional</th><td></td></tr><tr>
+<td>Portada</td><td><select name="book_cover"><option value="blue" selected style="color:blue;">Azul</option><option value="red" style="color:red;">Rojo</option><option value="green" style="color:green;">Verde</option><option value="yellow" style="color:yellow;">Amarillo</option></td>
+</tr>
+</tr><td>Imagen</td><td><input name="book_image" type="file"/></td></tr><tr>
+<td colspan="2"><span style="font-size:10px;"> (extensiones aceptadas: <i>.jpg</i>)</span></td></tr><tr>
+</table>
+<br/>
+<input type="submit" value="Crear" style="color:white;" class="button"/>
+</form>
+NEW;
 
 ?>

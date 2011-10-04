@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<page id="12.xml">
-  <bgcolor>#000000</bgcolor>
-  <text>Intentas venderle galletas por un precio abusivo a una anciana con la excusa de que es para una buena causa. Fracasas estrepitosamente ya que no tienes galletas ni hay ancianas en los alrededores.</text>
-  <continue value="13.xml">Poner en práctica los consejos de supervivencia que te enseñaron en los GayScouts</continue>
-</page>

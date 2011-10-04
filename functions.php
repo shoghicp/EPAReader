@@ -30,12 +30,26 @@ function parsetemplate ($template, $array){
 	return preg_replace('#\{([a-z0-9\-_]*?)\}#Ssie', '( ( isset($array[\'\1\']) ) ? $array[\'\1\'] : \'\' );', $template);
 }
 
+function xml_escape($str){
+	return htmlentities($str,ENT_QUOTES);
+}
+
 function cleanPath($string){
 	return str_replace('.xml', '', $string);
 }
 
 function xml_attribute($object, $attribute){
-    if(isset($object[$attribute]))
-        return (string) $object[$attribute];
+	if(isset($object[$attribute]))
+		return (string) $object[$attribute];
+}
+function find_files($path, $pattern, $callback){
+	$path = rtrim(str_replace("\\", "/", $path), '/') . '/*';
+	foreach(glob($path) as $fullname) {
+		if(is_dir($fullname)) {
+			find_files($fullname, $pattern, $callback);
+		}elseif(preg_match($pattern, $fullname)) {
+			call_user_func($callback, $fullname);
+		}
+	}
 }
 ?>

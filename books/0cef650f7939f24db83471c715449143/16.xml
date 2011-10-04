@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<page id="16.xml">
-  <bgcolor>#000000</bgcolor>
-  <text>Intentas no perder la calma. Lo mejor será tranquilizarse y pensar otra alternativa... Cierras los ojos unos segundos y los vuelves a abrir...</text>
-  <continue target="3.xml">Continuar</continue>
-</page>

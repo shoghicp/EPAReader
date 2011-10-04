@@ -56,9 +56,23 @@ img{
 	background: transparent;
 	cursor:pointer;
 }
+.button.big{
+	border: 2px solid silver;
+	border-radius: 12px;
+	padding: 12px;
+	text-decoration: none;
+	background: transparent;
+	cursor:pointer;
+	font-weight: bold;
+	font-size: 20px;
+}
 .button:hover{
 	text-shadow: grey 2px 2px 5px;
-	border: 1px solid grey;
+	border: 1px solid gray;
+}
+.button.big:hover{
+	text-shadow: grey 2px 2px 5px;
+	border: 2px solid gray;
 }
 
 

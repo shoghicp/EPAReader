@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<page id="1.xml">
-  <bgcolor>#000000</bgcolor>
-  <text>Te despiertas de repente. Abres los ojos. Te duele mucho la cabeza. ¿Donde estoy?</text>
-  <continue target="2.xml">Continuar</continue>
-</page>
