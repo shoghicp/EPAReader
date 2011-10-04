@@ -1,25 +1,25 @@
 <?php
 
 /*
-	 _____ ____   _    ____                _           
-	| ____|  _ \ / \  |  _ \ ___  __ _  __| | ___ _ __ 
+	 _____ ____   _    ____ 			   _		   
+	| ____|  _ \ / \  |  _ \ ___  __ _	__| | ___ _ __ 
 	|  _| | |_) / _ \ | |_) / _ \/ _` |/ _` |/ _ \ '__|
 	| |___|  __/ ___ \|  _ <  __/ (_| | (_| |  __/ |   
-	|_____|_| /_/   \_\_| \_\___|\__,_|\__,_|\___|_|   
+	|_____|_| /_/	\_\_| \_\___|\__,_|\__,_|\___|_|   
 
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Lesser General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU Lesser General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU Lesser General Public License for more details.
 
-    You should have received a copy of the GNU Lesser General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+	You should have received a copy of the GNU Lesser General Public License
+	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
  *
  * @author shoghicp@gmail.com
@@ -65,13 +65,13 @@ switch($_GET['page']){
 			$array = array('booklist' => '');
 			$count = 0;
 			foreach($books as $arr){
-				if(($count % 4) == 0 and $count > 0){ $array['booklist'] .= '</ul><div style=height:240px; >&nbsp;</div><br/><ul style="list-style-type: none;">';}
+				if(($count % 4) == 0 and $count > 0){ $array['booklist'] .= '</ul><div style=height:240px; > </div><br/><ul style="list-style-type: none;">';}
 				if($arr['img'] != ""){
 					$img = "<img src='books/".$arr['id']."/".$arr['img']."' width='120'/>";
 				}else{
 					$img = '';
 				}
-				$array['booklist'] .= '<li style="float: left;"><a href="index.php?page=read&book='.$arr['id'].'" title="'.addslashes($arr['desc']).'" style="text-decoration:none;"><div class="book"><div style="background:'.$arr['cover'].';" class=bgcover id=bgcover'.$arr['id'].' >&nbsp;</div><div class=main >'.$arr['title'].'</div><div class=sub >'.$arr['subtitle'].'</div><div class=bimg >'.$img.'</div><div class=auth >- '.$arr['author'].' -</div><div class=edition >'.$arr['edition'].'</div></div></a></li>';
+				$array['booklist'] .= '<li style="float: left;"><a href="index.php?page=read&book='.$arr['id'].'" title="'.addslashes($arr['desc']).'" style="text-decoration:none;"><div class="book"><div style="background:'.$arr['cover'].';" class=bgcover id=bgcover'.$arr['id'].' > </div><div class=main >'.$arr['title'].'</div><div class=sub >'.$arr['subtitle'].'</div><div class=bimg >'.$img.'</div><div class=auth >- '.$arr['author'].' -</div><div class=edition >'.$arr['edition'].'</div></div></a></li>';
 				$count++;
 			}
 			$array['count'] = $count;
@@ -79,13 +79,13 @@ switch($_GET['page']){
 		}
 		break;
 	case "upload":
- 		if(!$_POST){header("Location: index.php"); die(); }
-		$tipo_archivo = strrchr($_FILES['book_file']['name'], '.'); 
+		if(!$_POST){header("Location: index.php"); die(); }
+		$tipo_archivo = strtolower(strrchr($_FILES['book_file']['name'], '.')); 
 		if (!((strpos($tipo_archivo, "epa") || strpos($tipo_archivo, "zip")) && ($_FILES['book_file']['size'] < 10000000))) {
-		   	echo $template['header'], "<div class=title>Error</div><br/>El libro que has enviado no tiene una extension correcta o es mas grande que 10MB", $template['footer']; 
+			echo $template['header'], "<div class=title>Error</div><br/>El libro que has enviado no tiene una extension correcta o es mas grande que 10MB", $template['footer']; 
 		}else{ 
 			$name = md5(time().mt_rand().$_FILES['book_file']['tmp_name']);
-		   	if (move_uploaded_file($_FILES['book_file']['tmp_name'], "./uploads/".$name.".zip")){
+			if (move_uploaded_file($_FILES['book_file']['tmp_name'], "./uploads/".$name.".zip")){
 				$zip = new ZipArchive;
 				$res = $zip->open("./uploads/".$name.".zip");
 				if ($res === true) {
@@ -93,15 +93,15 @@ switch($_GET['page']){
 					$zip->extractTo("./books/".$name);
 					$zip->close();
 					find_files("./books/".$name,"/.php/i",'unlink');
-		   			echo $template['header'], "<div class=title>Hecho</div><br/>El libro ha sido guardado y descomprimido<br><br><a href=index.php?page=read&book=".$name." style=color:white class=button >Leer ahora</a> ", $template['footer'];
+					echo $template['header'], "<div class=title>Hecho</div><br/>El libro ha sido guardado y descomprimido<br><br><a href=index.php?page=read&book=".$name." style=color:white class=button >Leer ahora</a> ", $template['footer'];
 				} else {
-		   			echo $template['header'], "<div class=title>Error</div><br/>No se puede descomprimir el archivo", $template['footer'];
+					echo $template['header'], "<div class=title>Error</div><br/>No se puede descomprimir el archivo", $template['footer'];
 					rmdir("./books/".$name);
 				} 
 				unlink("./uploads/".$name.".zip");
-		   	}else{ 
-		   	echo $template['header'], "<div class=title>Error</div><br/>ha ocurrido un error al guardar el archivo", $template['footer']; 
-		   	} 
+			}else{ 
+			echo $template['header'], "<div class=title>Error</div><br/>ha ocurrido un error al guardar el archivo", $template['footer']; 
+			} 
 		}
 		break;
 	case "create":
@@ -130,7 +130,7 @@ switch($_GET['page']){
 			$xml->addChild("init", "1.xml");
 			$file = false;
 			if(isset($_FILES['book_image'])){
-				$tipo_archivo = strrchr($_FILES['book_image']['name'], '.'); 
+				$tipo_archivo = strtolower(strrchr($_FILES['book_image']['name'], '.')); 
 				if (!((strpos($tipo_archivo, "jpg")) && ($_FILES['book_image']['size'] < 10000000))) {
 					echo $template['header'], "<div class=title>Error</div><br/>El libro que has enviado no tiene una extension correcta o es mas grande que 10MB", $template['footer']; 
 					die();
@@ -147,9 +147,9 @@ switch($_GET['page']){
 				$xml->addChild("image", "cover.jpg");
 			}
 			$xml->asXML("./books/".$name."/info.xml");
-		   	echo $template['header'], "<div class=title>Hecho</div><br/>El libro ha sido creado<br><br><a href=index.php?page=edit&book=".$name." style=color:white class=button >Editar</a> ", $template['footer'];
+			echo $template['header'], "<div class=title>Hecho</div><br/>El libro ha sido creado<br><br><a href=index.php?page=edit&book=".$name." style=color:white class=button >Editar</a> ", $template['footer'];
 		}else{
-		   	echo $template['header'], "<div class=title>Error</div><br/>Faltan campos obligatorios por rellenar", $template['footer'];	
+			echo $template['header'], "<div class=title>Error</div><br/>Faltan campos obligatorios por rellenar", $template['footer'];	
 		}
 		break;
 	case "edit":
