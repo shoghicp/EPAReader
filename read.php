@@ -86,7 +86,7 @@ if($page != ""){
 		echo '<div class=final >Final del libro.<br/>Tu puntacion es <b>'.$_SESSION[$id]['score'].'</b></div>'; 
 		$_SESSION[$id] = array('score' => 0, 'flags' => array());
 	}
-	echo '</div>'.$template['footer'];
+	echo '</div><br/><div><a href="index.php?page=edit&book='.$id.'&n='.$page.'" class="button">Editar</a></div>'.$template['footer'];
 
 }else{
 	$_SESSION[$id] = array('score' => 0, 'flags' => array());
@@ -97,7 +97,7 @@ if($page != ""){
 					$img = '';
 				}
 				echo '<a href="index.php?page=read&book='.$id.'&n='.str_replace('.xml', '', $infoXml->init[0]) .'" style="text-decoration:none;"><div class="bookg"><div style="background:'.$infoXml->cover[0].';" class=bgcover id=bgcover'.$id.' >&nbsp;</div><div class=main >'.$infoXml->title[0].'</div><div class=sub >'.$infoXml->subtitle[0].'</div><div class=bimg >'.$img.'</div><div class=auth >- '.$infoXml->author[0].' -</div><div class=edition >'.$infoXml->edition[0].'</div></div></a></li>';
-				echo '<br/><div style="width:600px;">'.addslashes($infoXml->description[0]).'</div><br/>';
+				echo '<br/><div style="width:600px;">'.addslashes($infoXml->description[0]).'<br/><br/><a href="index.php?page=download&book='.$id.'" class="button">Descargar</a>&nbsp;&nbsp;<a href="index.php?page=edit&book='.$id.'" class="button">Editar</a></div><br/>';
 				echo '<script type="text/javascript">
 					  $(document).ready(function(){
 					   $(".bgcover").fadeTo(0, 0);

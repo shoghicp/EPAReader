@@ -84,7 +84,7 @@ switch($_GET['page']){
 		if (!((strpos($tipo_archivo, "epa") || strpos($tipo_archivo, "zip")) && ($_FILES['book_file']['size'] < 10000000))) {
 		   	echo $template['header'], "<div class=title>Error</div><br/>El libro que has enviado no tiene una extension correcta o es mas grande que 10MB", $template['footer']; 
 		}else{ 
-			$name = md5(time().mt_rand(0, 2000000));
+			$name = md5(time().mt_rand().$_FILES['book_file']['tmp_name']);
 		   	if (move_uploaded_file($_FILES['book_file']['tmp_name'], "./uploads/".$name.".zip")){
 				$zip = new ZipArchive;
 				$res = $zip->open("./uploads/".$name.".zip");
@@ -137,19 +137,37 @@ switch($_GET['page']){
 				}
 				$file = true;
 			}
-			
-			$name = md5(time().mt_rand(0, 2000000));
+			if($_POST["book_subtitle"]!=""){
+				$xml->addChild("subtitle", xml_escape($_POST["book_subtitle"]));
+			}			
+			$name = md5(time().mt_rand().$_POST["book_title"]);
 			mkdir("./books/".$name);
 			if($file){
-				move_uploaded_file($_FILES['book_image']['tmp_name'], "./books/cover.jpg");
+				move_uploaded_file($_FILES['book_image']['tmp_name'], "./books/".$name."/cover.jpg");
 				$xml->addChild("image", "cover.jpg");
-				unlink($_FILES['book_image']['tmp_name']);
 			}
 			$xml->asXML("./books/".$name."/info.xml");
+		   	echo $template['header'], "<div class=title>Hecho</div><br/>El libro ha sido creado<br><br><a href=index.php?page=edit&book=".$name." style=color:white class=button >Editar</a> ", $template['footer'];
 		}else{
 		   	echo $template['header'], "<div class=title>Error</div><br/>Faltan campos obligatorios por rellenar", $template['footer'];	
 		}
 		break;
+	case "edit":
+		echo $template['header'], "<div class=title>TEST</div>", $template['footer'];
+		break;
+	case "download":
+			set_time_limit(0);
+			$id = addslashes(str_replace('.', '', $_GET['book']));
+			$infoXml = simplexml_load_file("books/".$id."/info.xml");
+			$title = addslashes($infoXml->title[0]." - ".$infoXml->author[0]);
+			$name = md5(mt_rand().$title);
+			zip("books/".$id."/","uploads/".$name.".epa");
+			header('Content-type: application/zip');
+			header('Content-Disposition: attachment; filename="'.$title.'.epa"');
+			readfile("uploads/".$name.".epa");
+			unlink("uploads/".$name.".epa");
+			die();
+			break;
 	case "new":
 		echo $template['header'], $template['new'], $template['footer'];
 		break;

@@ -115,8 +115,9 @@ Libro: <input name="book_file" type="file"/>
 </tr><td></td></tr><tr>
 <th style="text-decoration:underline;">Opcional</th><td></td></tr><tr>
 <td>Portada</td><td><select name="book_cover"><option value="blue" selected style="color:blue;">Azul</option><option value="red" style="color:red;">Rojo</option><option value="green" style="color:green;">Verde</option><option value="yellow" style="color:yellow;">Amarillo</option></td>
-</tr>
-</tr><td>Imagen</td><td><input name="book_image" type="file"/></td></tr><tr>
+</tr><tr>
+<td>Subtitulo</td><td><input name="book_subtitle" type="text"/></td>
+</tr><tr><td>Imagen</td><td><input name="book_image" type="file"/></td></tr><tr>
 <td colspan="2"><span style="font-size:10px;"> (extensiones aceptadas: <i>.jpg</i>)</span></td></tr><tr>
 </table>
 <br/>
