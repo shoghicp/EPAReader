@@ -69,13 +69,21 @@ if($page != ""){
 				$link = "<div style=color:white; onclick=\"$('div#content').load('index.php?page=read&book=".$id."&n=".cleanPath($option['target'])."&ajax=1');\" class=option >".$option."</div>";
 			}else{
 				$link = "<div style=color:white; onclick=\"go('index.php?page=read&book=".$id."&n=".cleanPath($option['target'])."');\" class=option >".$option."</div>";
-			}
-			if(isset($option['true']) or isset($option['false'])){	
-				if(isset($option['true']) and $_SESSION[$id]['flags'][$option['true']] != true){
-					continue;
+			}			
+			if(isset($option['true'])){
+				$optione = explode(",",$option['true']);
+				foreach($optione as $option2){
+					if($_SESSION[$id]['flags'][$option2] != true and $option2 != ""){
+						continue;
+					}
 				}
-				if(isset($option['false']) and $_SESSION[$id]['flags'][$option['false']] != false){
-					continue;
+			}
+			if(isset($option['false'])){
+				$optione = explode(",",$option['false']);
+				foreach($optione as $option2){
+					if($_SESSION[$id]['flags'][$option2] != false and $option2 != ""){
+						continue;
+					}
 				}
 			}
 			echo $link;
@@ -104,8 +112,30 @@ if($page != ""){
 				}else{
 					$img = '';
 				}
+				$contacts = "";
+				if(isset($infoXml->contacts)){
+					$list = "";
+					foreach($infoXml->contacts->contact as $contact){
+						switch($contact["type"]){
+							case "twitter":
+								$user = str_replace(array("@","twitter.com","www.","https","http","://","/","#!"),"",$contact);
+								$list .= "<br/>&nbsp;&nbsp;<a target=\"_blank\" style=\"color:white;text-decoration:none;font-size:12px;\" href=\"http://twitter.com/".$user."\">@".$user."</a>";
+								break;
+							case "email":
+								$list .= "<br/>&nbsp;&nbsp;<a target=\"_blank\" style=\"color:white;text-decoration:none;font-size:12px;\" href=\"mailto:".$contact."\">".$contact."</a>";							
+								break;
+							default:
+								$list .= "<br/>".$contact;
+								break;
+						}
+					}
+					$contacts .= "<br/><br/><span style=\"text-decoration:underline;font-weight:bold;\">Contacto</span>".$list;
+				}
+				if(isset($infoXml->url)){
+					$contacts .= "<br/>URL: <a target=\"_blank\" href=\"".$infoXml->url."\" style=\"color:white;\">".$infoXml->url ."</a>";
+				}
 				echo '<a href="index.php?page=read&book='.$id.'&n='.str_replace('.xml', '', $infoXml->init[0]) .'" style="text-decoration:none;"><div class="bookg"><div style="background:'.$infoXml->cover[0].';" class=bgcover id=bgcover'.$id.' >&nbsp;</div><div class=main >'.$infoXml->title[0].'</div><div class=sub >'.$infoXml->subtitle[0].'</div><div class=bimg >'.$img.'</div><div class=auth >- '.$infoXml->author[0].' -</div><div class=edition >'.$infoXml->edition[0].'</div></div></a></li>';
-				echo '<br/><div style="width:600px;">'.addslashes($infoXml->description[0]).'<br/><br/><a href="index.php?page=download&book='.$id.'" class="button">Descargar</a>&nbsp;&nbsp;<a href="index.php?page=edit&book='.$id.'" class="button">Editar</a>&nbsp;&nbsp;<a href="index.php?page=delete&book='.$id.'" onclick="return confirm(\'Esta seguro?\');" class="button">Borrar</a></div></div><br/>';
+				echo '<br/><div style="width:600px;">'.addslashes($infoXml->description[0]).$contacts.'<br/><br/><a href="index.php?page=download&book='.$id.'" class="button">Descargar</a>&nbsp;&nbsp;<a href="index.php?page=edit&book='.$id.'" class="button">Editar</a>&nbsp;&nbsp;<a href="index.php?page=delete&book='.$id.'" onclick="return confirm(\'Esta seguro?\');" class="button">Borrar</a></div></div><br/>';
 				echo '<script type="text/javascript">
 					  $(document).ready(function(){
 					   $(".bgcover").fadeTo(0, 0);

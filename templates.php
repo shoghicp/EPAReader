@@ -58,10 +58,12 @@ $template['footer'] = <<<FOOTER
 </body>
 </html>
 FOOTER;
+
 }else{
-$template['header'] = "";
-$template['footer'] = "";
+	$template['header'] = "";
+	$template['footer'] = "";
 }
+
 $template['index'] = <<<INDEX
 <div class="title">Inicio</div>
 <br/>
