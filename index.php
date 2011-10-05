@@ -40,8 +40,8 @@ ini_set('default_charset', 'UTF-8');
 date_default_timezone_set('Europe/Madrid');
 
 include_once("config.php");
-$VERSION = VERSION;
 $EPA_VERSION = EPA_VERSION;
+
 include_once("functions.php");
 include_once("templates.php");
 

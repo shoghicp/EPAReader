@@ -31,6 +31,30 @@ $id = addslashes(str_replace('.', '', $_GET['book']));
 if(!isset($_GET['n'])){ $_GET['n'] = ""; }
 $page = addslashes(str_replace('.', '', $_GET['n']));
 $infoXml = simplexml_load_file("books/".$id."/info.xml");
+
+if(isset($_GET['mode']) and $_GET['mode']=='save'){
+	if($page == "" or $page < 0 ){
+		$page = 1;
+	}
+	$saveFile = saveAdventure($infoXml->title[0].$infoXml->edition[0], $_SESSION[$id]['score'], $_SESSION[$id]['flags'], $page.".xml");
+	file_put_contents("saves/".time().$infoXml->title[0]."_".$infoXml->edition[0].".epas",$saveFile);
+	echo $template['header'], "<div class=title>Hecho</div><br/>El libro ha sido guardado", $template['footer'];
+	die();
+}
+if(isset($_GET['save']) and $_GET['save']!=''){
+	if(isset($_GET['mode']) and $_GET['mode']=='delete'){
+		unlink("./saves/".addslashes(str_replace(array('epas','.'), '', $_GET['save'])).".epas");
+	}else{
+		$save = loadAdventure(file_get_contents("./saves/".addslashes(str_replace(array('epas','.'), '', $_GET['save'])).".epas"));
+		if(is_array($save)){
+			$_SESSION[$id] = array("flags" => $save["flags"], "score" => $save["score"]);
+			$page = str_replace(".xml",'',$save["page"]);	
+		}else{
+			echo $template['header'], "<div class=title>Error</div><br/>El archivo no es una partida guardada", $template['footer'];
+			die();
+		}
+	}
+}
 if($page != ""){
 	if(!is_array($_SESSION[$id])){
 		$_SESSION[$id] = array('score' => 0, 'flags' => array());
@@ -102,17 +126,17 @@ if($page != ""){
 		echo '<div class=final >Final del libro.<br/>Tu puntacion es <b>'.$_SESSION[$id]['score'].'</b><br/><a href="index.php" style="color:white;">Inicio</a></div>'; 
 		$_SESSION[$id] = array('score' => 0, 'flags' => array());
 	}
-	echo '</div><br/><div><a href="index.php?page=edit&book='.$id.'&n='.$page.'" class="button">Editar</a></div>'.$template['footer'];
+	echo '</div><br/><div><a href="index.php?page=read&book='.$id.'&n='.$page.'&mode=save" class="button">Guardar progreso</a></div>'.$template['footer'];
 
 }else{
 	$_SESSION[$id] = array('score' => 0, 'flags' => array());
-	echo $template['header'].'<div class=title >'.$infoXml->title[0].'</div><br/>Pulsa en el libro para empezar a leerlo.<br/>';
+	echo $template['header'].'<div class=title >'.$infoXml->title[0].'</div><br/>Pulsa en el libro para empezar a leerlo, o pulsa una partida guardada<br/>';
 				if($infoXml->image[0] != ""){
 					$img = "<img src='books/".$id."/".$infoXml->image[0]."' width='196'/>";
 				}else{
 					$img = '';
 				}
-				$contacts = "";
+				$info = "";
 				if(isset($infoXml->contacts)){
 					$list = "";
 					foreach($infoXml->contacts->contact as $contact){
@@ -120,6 +144,10 @@ if($page != ""){
 							case "twitter":
 								$user = str_replace(array("@","twitter.com","www.","https","http","://","/","#!"),"",$contact);
 								$list .= "<br/>&nbsp;&nbsp;<a target=\"_blank\" style=\"color:white;text-decoration:none;font-size:12px;\" href=\"http://twitter.com/".$user."\">@".$user."</a>";
+								break;
+							case "gtalk":
+								$user = str_replace(array("@","google.com"),"",$contact);
+								$list .= "<br/>&nbsp;&nbsp;<a target=\"_blank\" style=\"color:white;text-decoration:none;font-size:12px;\" href=\"mailto:".$user."@gmail.com\">".$user."@gmail.com</a>";
 								break;
 							case "email":
 								$list .= "<br/>&nbsp;&nbsp;<a target=\"_blank\" style=\"color:white;text-decoration:none;font-size:12px;\" href=\"mailto:".$contact."\">".$contact."</a>";							
@@ -129,13 +157,31 @@ if($page != ""){
 								break;
 						}
 					}
-					$contacts .= "<br/><br/><span style=\"text-decoration:underline;font-weight:bold;\">Contacto</span>".$list;
+					$info .= "<br/><br/><span style=\"text-decoration:underline;font-weight:bold;\">Contacto</span>".$list;
 				}
 				if(isset($infoXml->url)){
-					$contacts .= "<br/>URL: <a target=\"_blank\" href=\"".$infoXml->url."\" style=\"color:white;\">".$infoXml->url ."</a>";
+					$info .= "<br/>URL: <a target=\"_blank\" href=\"".$infoXml->url."\" style=\"color:white;\">".$infoXml->url ."</a>";
+				}
+				if(isset($infoXml->license)){
+					$info .= '<br/><br/><span class="button" onclick=\'$("div#book_license").css("display", "block");$(this).remove();\'>Licencia</span><div style="display:none;" id="book_license"><span style="text-decoration:underline;font-weight:bold;">Licencia</span><pre>'.$infoXml->license.'</pre></div>';
+				}
+				$itemHandler = opendir("./saves/");
+				$saves = "";
+				while($item=readdir($itemHandler)){
+					$tipo_archivo = strtolower(strrchr($item, '.')); 
+					if(!strpos($tipo_archivo, "epas")){
+						continue;
+					}
+					$save = loadAdventure(file_get_contents("./saves/".$item));
+					if($save["book"]==($infoXml->title[0].$infoXml->edition[0])){
+						$saves .= '<br/><br/><a href="index.php?page=read&book='.$id.'&save='.$item.'" style="color:white" class="button">'.$item.'</a>&nbsp;<a href="index.php?page=read&book='.$id.'&save='.$item.'&mode=delete" style="color:red" class="button">x</a>';
+					}
+				}
+				if($saves != ""){
+					$info .= "<br/><br/><span style=\"text-decoration:underline;font-weight:bold;\">Partidas guardadas</span>".$saves."<br/>";
 				}
 				echo '<a href="index.php?page=read&book='.$id.'&n='.str_replace('.xml', '', $infoXml->init[0]) .'" style="text-decoration:none;"><div class="bookg"><div style="background:'.$infoXml->cover[0].';" class=bgcover id=bgcover'.$id.' >&nbsp;</div><div class=main >'.$infoXml->title[0].'</div><div class=sub >'.$infoXml->subtitle[0].'</div><div class=bimg >'.$img.'</div><div class=auth >- '.$infoXml->author[0].' -</div><div class=edition >'.$infoXml->edition[0].'</div></div></a></li>';
-				echo '<br/><div style="width:600px;">'.addslashes($infoXml->description[0]).$contacts.'<br/><br/><a href="index.php?page=download&book='.$id.'" class="button">Descargar</a>&nbsp;&nbsp;<a href="index.php?page=edit&book='.$id.'" class="button">Editar</a>&nbsp;&nbsp;<a href="index.php?page=delete&book='.$id.'" onclick="return confirm(\'Esta seguro?\');" class="button">Borrar</a></div></div><br/>';
+				echo '<br/><div style="width:600px;">'.addslashes($infoXml->description[0]).$info.'<br/><br/><a href="index.php?page=download&book='.$id.'" class="button">Descargar</a>&nbsp;&nbsp;<a href="index.php?page=edit&book='.$id.'" class="button">Editar</a>&nbsp;&nbsp;<a href="index.php?page=delete&book='.$id.'" onclick="return confirm(\'Esta seguro?\');" class="button">Borrar</a></div></div><br/>';
 				echo '<script type="text/javascript">
 					  $(document).ready(function(){
 					   $(".bgcover").fadeTo(0, 0);

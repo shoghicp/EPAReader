@@ -53,6 +53,53 @@ function find_files($path, $pattern, $callback){
 	}
 }
 
+function loadAdventure($save){
+	$lines = explode("\r\n",$save);
+	$ret = array();
+	foreach($lines as $num => $line){
+		switch($num){
+			case 1:
+				$ret['book'] = base64_decode($line);
+				break;
+			case 2:
+				$ret['score'] = $line;
+				break;
+			case 3:
+				$ret['page'] = $line;
+				break;
+			case 4:
+				$ret['flags'] = array();
+				$flags = explode(";",$line);
+				foreach($flags as $flag){
+					if($flag != ""){
+						$a = explode(",",$flag);
+						$ret['flags'][$a[0]] = $a[1];
+					}
+				}
+				break;
+			default:
+				continue;
+				break;
+		
+		}
+	}
+	return $ret;
+}
+
+function saveAdventure($book,$score,$flags,$page){
+	$saveFile = "EPA_SAVEFILE_". EPA_VERSION ."\r\n";
+	$saveFile .= base64_encode($book)."\r\n"; //base64 titulo+edicion
+	$saveFile .= $score."\r\n"; //puntuaje
+	$saveFile .= $page."\r\n"; //pagina actual
+	foreach($flags as $obj => $val){
+		if($obj != ""){
+			$saveFile .= $obj.":".(($val===true) ? "1":"0").";"; // flag:valor;
+		}
+	}
+	$saveFile .= "\r\n";
+	return $saveFile;
+}
+
 function zip($source, $destination){
 	if(file_exists($source) === true){
 		$zip = new ZipArchive();
