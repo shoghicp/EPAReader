@@ -119,7 +119,7 @@ a.button{
 }
 .book .auth{
 	position:absolute;
-	top: 230px;
+	top: 210px;
 	font-size:9px;
 	font-weight: normal;
 	margin:auto;
@@ -129,7 +129,7 @@ a.button{
 }
 .book .edition{
 	position:absolute;
-	top: 215px;
+	top: 200px;
 	font-size:7px;
 	font-weight: normal;
 	margin:auto;
@@ -189,7 +189,7 @@ a.button{
 }
 .bookg .auth{
 	position:absolute;
-	top: 350px;
+	top: 330px;
 	font-size:12px;
 	font-weight: normal;
 	margin:auto;
@@ -199,7 +199,7 @@ a.button{
 }
 .bookg .edition{
 	position:absolute;
-	top: 325px;
+	top: 310px;
 	font-size:9px;
 	font-weight: normal;
 	margin:auto;
@@ -246,13 +246,19 @@ a.button{
 	position: relative;
 	left:10px;
 	margin: auto;
+	margin-right:29px;
+	margin-top:7px;
 	border: 1px solid silver;
 	border-radius: 5px;
-	padding: 1px;
+	padding: 2px;
 	font-size:9px;
 	text-decoration: none;
 	background: transparent;
 	cursor:pointer;
+}
+.bookpage .option:hover{
+	border: 1px solid gray;
+
 }
 .bookpage .final{
 	position: absolute;

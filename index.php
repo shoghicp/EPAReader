@@ -153,7 +153,11 @@ switch($_GET['page']){
 		}
 		break;
 	case "edit":
-		echo $template['header'], "<div class=title>TEST</div>", $template['footer'];
+		$id = addslashes(str_replace('.', '', $_GET['book']));
+		$page = addslashes(str_replace('.', '', $_GET['n']));
+		if(!file_exists('books/'.$id.'/1.xml') or $page==""){
+			$page = 1;
+		}
 		break;
 	case "download":
 			set_time_limit(0);
@@ -168,6 +172,12 @@ switch($_GET['page']){
 			unlink("uploads/".$name.".epa");
 			die();
 			break;
+	case "delete":
+		$id = addslashes(str_replace('.', '', $_GET['book']));
+		find_files("./books/".$id,"/.*/",'unlink');
+		rmdir("./books/".$id);
+		echo $template['header'], "<div class=title>Hecho</div><br/>El libro ha sido borrado", $template['footer'];
+		break;
 	case "new":
 		echo $template['header'], $template['new'], $template['footer'];
 		break;
