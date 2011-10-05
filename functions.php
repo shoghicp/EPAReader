@@ -93,7 +93,7 @@ function saveAdventure($book,$score,$flags,$page){
 	$saveFile .= $page."\r\n"; //pagina actual
 	foreach($flags as $obj => $val){
 		if($obj != ""){
-			$saveFile .= $obj.":".(($val===true) ? "1":"0").";"; // flag:valor;
+			$saveFile .= $obj.":".(($val==true) ? "1":"0").";"; // flag:valor;
 		}
 	}
 	$saveFile .= "\r\n";

@@ -84,7 +84,7 @@ if($page != ""){
 	echo '<div class="text"><span style="font-size:13px;font-weight:bold;">'.$pageXml->title[0].'</span><br>'.$pageXml->text[0].'<br><span style="font-size:10px;">'.$pageXml->pretext .'</span>';
 	if($pageXml->flags){
 		foreach($pageXml->flags->flag as $flag){
-			$_SESSION[$id]['flags'][xml_attribute($flag, 'name')] = xml_attribute($flag, 'value'); 		
+			$_SESSION[$id]['flags'][xml_attribute($flag, 'name')] = xml_attribute($flag, 'value');		
 		}
 	}
 	if($pageXml->options){
@@ -126,7 +126,15 @@ if($page != ""){
 		echo '<div class=final >Final del libro.<br/>Tu puntacion es <b>'.$_SESSION[$id]['score'].'</b><br/><a href="index.php" style="color:white;">Inicio</a></div>'; 
 		$_SESSION[$id] = array('score' => 0, 'flags' => array());
 	}
-	echo '</div><br/><div><a href="index.php?page=read&book='.$id.'&n='.$page.'&mode=save" class="button">Guardar progreso</a></div>'.$template['footer'];
+	echo '</div><br/><div>';
+	if(count($_SESSION[$id]["flags"])>0){
+		echo '<table width="100"><tr><th>Objeto</th><th>Valor</th></tr>';
+		foreach($_SESSION[$id]["flags"] as $f => $v){
+			echo "<tr><td style=text-align:center;>".$f."</td><td style=text-align:center;>".(($v==true) ? "si":"no")."</td></tr>";
+		}
+		echo '</table><br/>';
+	}
+	echo '<a href="index.php?page=read&book='.$id.'&n='.$page.'&mode=save" class="button">Guardar progreso</a></div>'.$template['footer'];
 
 }else{
 	$_SESSION[$id] = array('score' => 0, 'flags' => array());
