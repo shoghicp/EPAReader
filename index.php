@@ -131,7 +131,7 @@ switch($_GET['page']){
 			$file = false;
 			if(isset($_FILES['book_image'])){
 				$tipo_archivo = strtolower(strrchr($_FILES['book_image']['name'], '.')); 
-				if (!((strpos($tipo_archivo, "jpg")) && ($_FILES['book_image']['size'] < 10000000))) {
+				if (!((strpos($tipo_archivo, "jpg") || strpos($tipo_archivo, "png")) && ($_FILES['book_image']['size'] < 10000000))) {
 					echo $template['header'], "<div class=title>Error</div><br/>El libro que has enviado no tiene una extension correcta o es mas grande que 10MB", $template['footer']; 
 					die();
 				}

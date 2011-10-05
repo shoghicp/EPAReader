@@ -1,24 +1,24 @@
 <?php
 /*
-	 _____ ____   _    ____                _           
-	| ____|  _ \ / \  |  _ \ ___  __ _  __| | ___ _ __ 
+	 _____ ____   _    ____ 			   _		   
+	| ____|  _ \ / \  |  _ \ ___  __ _	__| | ___ _ __ 
 	|  _| | |_) / _ \ | |_) / _ \/ _` |/ _` |/ _ \ '__|
 	| |___|  __/ ___ \|  _ <  __/ (_| | (_| |  __/ |   
-	|_____|_| /_/   \_\_| \_\___|\__,_|\__,_|\___|_|   
+	|_____|_| /_/	\_\_| \_\___|\__,_|\__,_|\___|_|   
 
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Lesser General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU Lesser General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU Lesser General Public License for more details.
 
-    You should have received a copy of the GNU Lesser General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+	You should have received a copy of the GNU Lesser General Public License
+	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
  *
  * @author shoghicp@gmail.com
@@ -44,13 +44,13 @@ $template['header'] = <<<HEADER
 	<div id="text-left">EPAReader</div>
 	<div id="menu">
 		<a href="index.php">Inicio</a>
-		&nbsp;&nbsp;
+		  
 		<a href="index.php?page=new">Nuevo</a>
-		&nbsp;&nbsp;
+		  
 		<a href="index.php?page=read">Leer</a>
 	</div>
 </div>
-<div id="margin" style="height:85px;">&nbsp;</div>
+<div id="margin" style="height:85px;"> </div>
 <div id="content">
 HEADER;
 
@@ -64,7 +64,7 @@ $template['index'] = <<<INDEX
 <div class="title">Inicio</div>
 <br/>
 <input type="button" class="button big" style="color:white;" onclick="go('index.php?page=new');" value="Nuevo"/>
-&nbsp;&nbsp;&nbsp;&nbsp;
+	
 <input type="button" class="button big" style="color:white;" onclick="go('index.php?page=read');" value="Leer"/>
 INDEX;
 
@@ -118,7 +118,7 @@ Libro: <input name="book_file" type="file"/>
 </tr><tr>
 <td>Subtitulo</td><td><input name="book_subtitle" type="text"/></td>
 </tr><tr><td>Imagen</td><td><input name="book_image" type="file"/></td></tr><tr>
-<td colspan="2"><span style="font-size:10px;"> (extensiones aceptadas: <i>.jpg</i>)</span></td></tr><tr>
+<td colspan="2"><span style="font-size:10px;"> (extensiones aceptadas: <i>.jpg, .png</i>)</span></td></tr><tr>
 </table>
 <br/>
 <input type="submit" value="Crear" style="color:white;" class="button"/>
