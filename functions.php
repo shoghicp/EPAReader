@@ -100,6 +100,17 @@ function saveAdventure($book,$score,$flags,$page){
 	return $saveFile;
 }
 
+function get($page){
+	$op = array(
+		'http'=>array(
+			'method'=>"GET",
+			'header'=>'User-Agent: EPAReader/'. VERSION .' PHP/'.phpversion()."\r\n",
+		)
+	);
+	;
+	return file_get_contents($page,0,stream_context_create($op));
+}
+
 function zip($source, $destination){
 	if(file_exists($source) === true){
 		$zip = new ZipArchive();

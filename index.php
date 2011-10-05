@@ -85,9 +85,9 @@ switch($_GET['page']){
 			echo $template['header'], "<div class=title>Error</div><br/>El libro que has enviado no tiene una extension correcta o es mas grande que 10MB", $template['footer']; 
 		}else{ 
 			$name = md5(time().mt_rand().$_FILES['book_file']['tmp_name']);
-			if (move_uploaded_file($_FILES['book_file']['tmp_name'], "./uploads/".$name.".zip")){
+			if (move_uploaded_file($_FILES['book_file']['tmp_name'], "./uploads/".$name.".epa")){
 				$zip = new ZipArchive;
-				$res = $zip->open("./uploads/".$name.".zip");
+				$res = $zip->open("./uploads/".$name.".epa");
 				if ($res === true) {
 					mkdir("./books/".$name);
 					$zip->extractTo("./books/".$name);
@@ -98,9 +98,9 @@ switch($_GET['page']){
 					echo $template['header'], "<div class=title>Error</div><br/>No se puede descomprimir el archivo", $template['footer'];
 					rmdir("./books/".$name);
 				} 
-				unlink("./uploads/".$name.".zip");
+				unlink("./uploads/".$name.".epa");
 			}else{ 
-			echo $template['header'], "<div class=title>Error</div><br/>ha ocurrido un error al guardar el archivo", $template['footer']; 
+				echo $template['header'], "<div class=title>Error</div><br/>ha ocurrido un error al guardar el archivo", $template['footer']; 
 			} 
 		}
 		break;
@@ -149,7 +149,7 @@ switch($_GET['page']){
 			$xml->asXML("./books/".$name."/info.xml");
 			echo $template['header'], "<div class=title>Hecho</div><br/>El libro ha sido creado<br><br><a href=index.php?page=edit&book=".$name." style=color:white class=button >Editar</a> ", $template['footer'];
 		}else{
-			echo $template['header'], "<div class=title>Error</div><br/>Faltan campos obligatorios por rellenar", $template['footer'];	
+			echo $template['header'], "<div class=title>Error</div><br/>Faltan campos obligatorios por rellenar", $template['footer'];
 		}
 		break;
 	case "edit":
@@ -158,6 +158,41 @@ switch($_GET['page']){
 		if(!file_exists('books/'.$id.'/1.xml') or $page==""){
 			$page = 1;
 		}
+		break;
+	case "repo":
+		if(isset($_GET["download"]) and $_GET["download"] != ""){
+			$name = md5(time().mt_rand().$_GET["download"]);
+			if(file_put_contents('./uploads/'.$name.'.epa',get(urldecode($_GET["download"])))){
+				$zip = new ZipArchive;
+				$res = $zip->open("./uploads/".$name.".epa");
+				if ($res === true) {
+					mkdir("./books/".$name);
+					$zip->extractTo("./books/".$name);
+					$zip->close();
+					find_files("./books/".$name,"/.php/i",'unlink');
+					echo $template['header'], "<div class=title>Hecho</div><br/>El libro ha sido guardado y descomprimido<br><br><a href=index.php?page=read&book=".$name." style=color:white class=button >Leer ahora</a> ", $template['footer'];
+				} else {
+					echo $template['header'], "<div class=title>Error</div><br/>No se puede descomprimir el archivo", $template['footer'];
+					rmdir("./books/".$name);
+				} 
+				unlink("./uploads/".$name.".epa");				
+			}else{
+				echo $template['header'], "<div class=title>Error</div><br/>No se pudo descargar el archivo", $template['footer'];
+			}
+			die();
+		}
+		if(!$_POST){header("Location: index.php");die();}
+		$repo = $_POST['repo'];
+		$list = explode("\n",get($repo));
+		echo $template['header'].'<div class="title">Descargar desde un repositorio</div><br/>';
+		foreach($list as $book){
+			if($book != ""){
+				$book = explode("|",$book);
+				$generos = array("VAR" => "Variado", "CFI" => "Ciencia ficcion");
+				echo '<div class="booklist"><div class="name">'.$book[2].'</div><div class="author">'.$book[1].'</div><div class="gen">'.$generos[$book[3]].'</div><div class="download" onclick=\'go("index.php?page=repo&download='.urlencode($book[0]).'");\'>Descargar</div></div>';
+			}
+		}
+		echo $template['footer'];
 		break;
 	case "download":
 			set_time_limit(0);

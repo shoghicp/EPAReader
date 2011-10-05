@@ -221,19 +221,24 @@ a.button{
 .bookpage{
 	width:320px;
 	height:480px;
-	margin: 10px;
+	margin:10px;
 	font-size: 14px;
-	position: relative;
+	position:relative;
 	border: 1px solid silver;
 }
 .bookpage .text{
 	width:290px;
+	height:450px;
 	font-size: 12px;
 	text-align: left;
 	position: absolute;
+	overflow:auto;
 	background: url(images/bg-t-image.png) repeat;
 	text-shadow: grey 1px 1px 5px;
 	padding: 15px;
+}
+.bookpage .text2{
+	width:270px;
 }
 .bookpage .button{
 	position: absolute;
@@ -268,6 +273,49 @@ a.button{
 	text-shadow: grey 2px 2px 5px;
 	background: url(images/bg-t-image.png) repeat;
 	padding: 2px;
+}
+
+
+.booklist{
+	border: 2px solid silver;
+	border-radius: 10px;
+	padding:5px;
+	height:30px;
+	width:400px;
+	margin-top:10px;
+	text-decoration: none;
+	color: white;
+	position:relative;
+}
+.booklist .name{
+	font-size:18px;
+	font-weight:bold;
+	top:0px;
+	left:5px;
+	position:absolute;
+}
+.booklist .author{
+	font-size:14px;
+	top:20px;
+	left:15px;
+	font-style:italic;
+	position:absolute;
+}
+.booklist .gen{
+	font-size:12px;
+	top:20px;
+	left:150px;
+	position:absolute;
+}
+.booklist .download{
+	font-size:18px;
+	top:8px;
+	left:300px;
+	position:absolute;
+	cursor:pointer;
+}
+.booklist .download:hover{
+	color:lime;
 }
 #header{
 	height: 70px;

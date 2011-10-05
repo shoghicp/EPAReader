@@ -27,5 +27,6 @@
 */
 
 define("EPA_VERSION", "1.0");
+define("VERSION", "v0.01");
 
 ?>

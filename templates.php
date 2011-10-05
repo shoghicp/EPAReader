@@ -99,7 +99,19 @@ Libro: <input name="book_file" type="file"/>
 <br/>
 <input type="submit" value="Enviar" style="color:white;" class="button"/>
 </form>
+<br/>
+<br/>
+<div class="title">Descargar desde un repositorio</div>
+<br/>
+<form action="index.php?page=repo" method="post">
+Repositorio: <select name="repo">
+<option value="http://www.emezeta.com/EPA/list.txt" selected>Emezeta</option>
+</select>
 <br/><br/>
+<input type="submit" value="Recibir" style="color:white;" class="button"/>
+</form>
+<br/>
+<br/>
 <div class="title">Crear nuevo Libro EPA</div>
 <br/>
 <form action="index.php?page=create" method="post"enctype="multipart/form-data">

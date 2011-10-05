@@ -81,7 +81,7 @@ if($page != ""){
 		$background = 'black';
 	}
 	echo '<div class="bookpage" style="background:'.$background.';">';
-	echo '<div class="text"><span style="font-size:13px;font-weight:bold;">'.$pageXml->title[0].'</span><br>'.$pageXml->text[0].'<br><span style="font-size:10px;">'.$pageXml->pretext .'</span>';
+	echo '<div class="text"><div class="text2"><span style="font-size:13px;font-weight:bold;">'.$pageXml->title[0].'</span><br>'.nl2br($pageXml->text[0]).'<br><span style="font-size:10px;">'.$pageXml->pretext .'</span>';
 	if($pageXml->flags){
 		foreach($pageXml->flags->flag as $flag){
 			$_SESSION[$id]['flags'][xml_attribute($flag, 'name')] = xml_attribute($flag, 'value');		
@@ -126,7 +126,7 @@ if($page != ""){
 		echo '<div class=final >Final del libro.<br/>Tu puntacion es <b>'.$_SESSION[$id]['score'].'</b><br/><a href="index.php" style="color:white;">Inicio</a></div>'; 
 		$_SESSION[$id] = array('score' => 0, 'flags' => array());
 	}
-	echo '</div><br/><div>';
+	echo '</div></div><br/><div>';
 	if(count($_SESSION[$id]["flags"])>0){
 		echo '<table width="100"><tr><th>Objeto</th><th>Valor</th></tr>';
 		foreach($_SESSION[$id]["flags"] as $f => $v){
