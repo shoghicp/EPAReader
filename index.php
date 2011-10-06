@@ -64,7 +64,7 @@ switch($_GET['page']){
 				   }
 			$array = array('booklist' => '', 'repo' => '');
 			if(REPO == true){
-				$array["repo"] = "<br/>Comparte tu coleccion con este repositorio: <input onclick=select() value=\"". EPAREADER_URL ."repo.php\"/>";
+				$array["repo"] = "<br/>Comparte esta coleccion con este repositorio: <input onclick=select() value=\"". EPAREADER_URL ."repo.php\"/>";
 			}
 			$count = 0;
 			foreach($books as $arr){

@@ -106,7 +106,7 @@ Libro: <input name="book_file" type="file"/>
 <form action="index.php?page=repo" method="post">
 Repositorio: <select name="repo" style="width:150px">
 <option value="http://www.emezeta.com/EPA/list.txt" selected>Emezeta</option>
-</select> o pon URL <input type="text" name="repo_url"/>
+</select> o URL <input type="text" name="repo_url"/>
 
 <br/><br/>
 <input type="submit" value="Recibir" style="color:white;" class="button"/>
