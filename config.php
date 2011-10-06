@@ -26,7 +26,9 @@
 
 */
 
-define("EPA_VERSION", "1.0");
-define("VERSION", "v0.01");
+define("EPA_VERSION",	"1.0");
+define("VERSION",		"v0.02");
+define("REPO",			true);//false to deactivate repo
+define("EPAREADER_URL",		"http://".$_SERVER["SERVER_NAME"].dirname($_SERVER["REQUEST_URI"])."/");
 
 ?>

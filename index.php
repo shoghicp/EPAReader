@@ -62,7 +62,10 @@ switch($_GET['page']){
 						$books[] = array('id' => $id, 'desc' => $xml->description[0], 'edition' => $xml->edition[0], 'title' => $xml->title[0], 'subtitle' => $xml->subtitle[0], 'cover' => $xml->cover[0], 'author' => $xml->author[0], 'img' => $xml->image[0]);
 					}
 				   }
-			$array = array('booklist' => '');
+			$array = array('booklist' => '', 'repo' => '');
+			if(REPO == true){
+				$array["repo"] = "<br/>Comparte tu coleccion con este repositorio: <input onclick=select() value=\"". EPAREADER_URL ."repo.php\"/>";
+			}
 			$count = 0;
 			foreach($books as $arr){
 				if(($count % 4) == 0 and $count > 0){ $array['booklist'] .= '</ul><div style=height:240px; > </div><br/><ul style="list-style-type: none;">';}
@@ -129,17 +132,20 @@ switch($_GET['page']){
 			$xml->addChild("cover", $color);
 			$xml->addChild("init", "1.xml");
 			$file = false;
-			if(isset($_FILES['book_image'])){
+			if(isset($_FILES['book_image']) and $_FILES['book_image']["name"] != ""){
 				$tipo_archivo = strtolower(strrchr($_FILES['book_image']['name'], '.')); 
 				if (!((strpos($tipo_archivo, "jpg") || strpos($tipo_archivo, "png")) && ($_FILES['book_image']['size'] < 10000000))) {
-					echo $template['header'], "<div class=title>Error</div><br/>El libro que has enviado no tiene una extension correcta o es mas grande que 10MB", $template['footer']; 
+					echo $template['header'], "<div class=title>Error</div><br/>La imagen que has enviado no tiene una extension correcta o es mas grande que 10MB", $template['footer']; 
 					die();
 				}
 				$file = true;
 			}
 			if($_POST["book_subtitle"]!=""){
 				$xml->addChild("subtitle", xml_escape($_POST["book_subtitle"]));
-			}			
+			}
+			if($_POST["book_genre"]!=""){
+				$xml->addChild("genre", xml_escape($_POST["book_genre"]));
+			}
 			$name = md5(time().mt_rand().$_POST["book_title"]);
 			mkdir("./books/".$name);
 			if($file){
@@ -182,7 +188,7 @@ switch($_GET['page']){
 			die();
 		}
 		if(!$_POST){header("Location: index.php");die();}
-		$repo = $_POST['repo'];
+		$repo = ($_POST["repo_url"] != "") ? $_POST['repo_url']:$_POST['repo'];
 		$list = explode("\n",get($repo));
 		echo $template['header'].'<div class="title">Descargar desde un repositorio</div><br/>';
 		foreach($list as $book){
@@ -195,18 +201,18 @@ switch($_GET['page']){
 		echo $template['footer'];
 		break;
 	case "download":
-			set_time_limit(0);
-			$id = addslashes(str_replace('.', '', $_GET['book']));
-			$infoXml = simplexml_load_file("books/".$id."/info.xml");
-			$title = addslashes($infoXml->title[0]." - ".$infoXml->author[0]);
-			$name = md5(mt_rand().$title);
-			zip("books/".$id."/","uploads/".$name.".epa");
-			header('Content-type: application/zip');
-			header('Content-Disposition: attachment; filename="'.$title.'.epa"');
-			readfile("uploads/".$name.".epa");
-			unlink("uploads/".$name.".epa");
-			die();
-			break;
+		set_time_limit(0);
+		$id = addslashes(str_replace('.', '', $_GET['book']));
+		$infoXml = simplexml_load_file("books/".$id."/info.xml");
+		$title = addslashes($infoXml->title[0]." - ".$infoXml->author[0]);
+		$name = md5(mt_rand().$title);
+		zip("books/".$id."/","uploads/".$name.".epa");
+		header('Content-type: application/zip');
+		header('Content-Disposition: attachment; filename="'.$title.'.epa"');
+		readfile("uploads/".$name.".epa");
+		unlink("uploads/".$name.".epa");
+		die();
+		break;
 	case "delete":
 		$id = addslashes(str_replace('.', '', $_GET['book']));
 		find_files("./books/".$id,"/.*/",'unlink');

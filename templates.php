@@ -75,7 +75,7 @@ INDEX;
 $template['read_select'] = <<<READ
 <div class="title">Seleccionar libro a leer</div>
 <br/>
-La libreria tiene {count} libros.
+La libreria tiene {count} libros. {repo}
 <br/>
 <ul style="list-style-type: none;">
 {booklist}
@@ -104,9 +104,10 @@ Libro: <input name="book_file" type="file"/>
 <div class="title">Descargar desde un repositorio</div>
 <br/>
 <form action="index.php?page=repo" method="post">
-Repositorio: <select name="repo">
+Repositorio: <select name="repo" style="width:150px">
 <option value="http://www.emezeta.com/EPA/list.txt" selected>Emezeta</option>
-</select>
+</select> o pon URL <input type="text" name="repo_url"/>
+
 <br/><br/>
 <input type="submit" value="Recibir" style="color:white;" class="button"/>
 </form>
@@ -131,6 +132,8 @@ Repositorio: <select name="repo">
 </tr><td></td></tr><tr>
 <th style="text-decoration:underline;">Opcional</th><td></td></tr><tr>
 <td>Portada</td><td><select name="book_cover"><option value="blue" selected style="color:blue;">Azul</option><option value="red" style="color:red;">Rojo</option><option value="green" style="color:green;">Verde</option><option value="yellow" style="color:yellow;">Amarillo</option></td>
+</tr><tr>
+<td>Genero</td><td><select name="book_genre"><option value="">Ninguno</option><option value="VAR">Variado</option><option value="CFI">Ciencia ficcion</option></select></td>
 </tr><tr>
 <td>Subtitulo</td><td><input name="book_subtitle" type="text"/></td>
 </tr><tr><td>Imagen</td><td><input name="book_image" type="file"/></td></tr><tr>
