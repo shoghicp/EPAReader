@@ -228,17 +228,17 @@ a.button{
 }
 .bookpage .text{
 	width:290px;
-	height:450px;
+	max-height:450px;
 	font-size: 12px;
 	text-align: left;
 	position: absolute;
 	overflow:auto;
-	background: url(images/bg-t-image.png) repeat;
-	text-shadow: grey 1px 1px 5px;
 	padding: 15px;
+	background: url(images/bg-t-image.png) repeat;
 }
 .bookpage .text2{
 	width:270px;
+	text-shadow: grey 1px 1px 5px;
 }
 .bookpage .button{
 	position: absolute;
@@ -286,16 +286,19 @@ a.button{
 	text-decoration: none;
 	color: white;
 	position:relative;
+	background: url(images/bg-t-image.png) repeat;
 }
 .booklist .name{
 	font-size:18px;
 	font-weight:bold;
 	top:0px;
 	left:5px;
+	color:skyblue;
 	position:absolute;
 }
 .booklist .author{
 	font-size:14px;
+	color:silver;
 	top:20px;
 	left:15px;
 	font-style:italic;

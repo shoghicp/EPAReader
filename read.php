@@ -113,7 +113,7 @@ if($page != ""){
 			echo $link;
 		}
 	}
-	echo '</div>';
+	echo '</div></div>';
 	if($pageXml->continue[0] != ""){
 	
 		if($ajax===true){
@@ -126,7 +126,7 @@ if($page != ""){
 		echo '<div class=final >Final del libro.<br/>Tu puntacion es <b>'.$_SESSION[$id]['score'].'</b><br/><a href="index.php" style="color:white;">Inicio</a></div>'; 
 		$_SESSION[$id] = array('score' => 0, 'flags' => array());
 	}
-	echo '</div></div><br/><div>';
+	echo '</div><br/><div>';
 	if(count($_SESSION[$id]["flags"])>0){
 		echo '<table width="100"><tr><th>Objeto</th><th>Valor</th></tr>';
 		foreach($_SESSION[$id]["flags"] as $f => $v){
