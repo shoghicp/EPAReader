@@ -29,6 +29,10 @@
 $template = array('header' => "", 'footer' => '');
 
 if(!isset($_GET['ajax']) || $_GET['ajax'] == 0){
+$public = "";
+if(IS_PUBLIC==true){
+	$public = '$("a#new_book_link").remove();$("a#index_book_link").remove();$("a#read_book_link").html("Inicio");';
+}
 $template['header'] = <<<HEADER
 <html>
 <head>
@@ -39,21 +43,25 @@ $template['header'] = <<<HEADER
 <script type="text/javascript">
 soundManager.url = "soundmanager2/";
 soundManager.onready(function() {
-
 });
 </script>
 <script type="text/javascript" src="functions.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+{$public}
+});
+</script>
 <!-- {meta} -->
 </head>
 <body>
 <div id="header">
 	<div id="text-left">EPAReader</div>
 	<div id="menu">
-		<a href="index.php">Inicio</a>
+		<a href="index.php" id="index_book_link">Inicio</a>
 		  
-		<a href="index.php?page=new">Nuevo</a>
+		<a href="index.php?page=new" id="new_book_link">Nuevo</a>
 		  
-		<a href="index.php?page=read">Leer</a>
+		<a href="index.php?page=read" id="read_book_link">Leer</a>
 	</div>
 </div>
 <div id="margin" style="height:85px;"> </div>

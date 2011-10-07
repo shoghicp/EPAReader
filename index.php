@@ -44,6 +44,11 @@ $EPA_VERSION = EPA_VERSION;
 
 include_once("functions.php");
 include_once("templates.php");
+if(IS_PUBLIC==true){
+	$template['new'] = "<div class=title>Error</div><br/>Esta libreria es publica";
+}
+
+
 
 if(!isset($_GET['page'])){ $_GET['page'] = ""; }
 switch($_GET['page']){
@@ -82,6 +87,7 @@ switch($_GET['page']){
 		}
 		break;
 	case "upload":
+		if(IS_PUBLIC==true){header("Location: index.php?page=read");die();}
 		if(!$_POST){header("Location: index.php"); die(); }
 		$tipo_archivo = strtolower(strrchr($_FILES['book_file']['name'], '.')); 
 		if (!((strpos($tipo_archivo, "epa") || strpos($tipo_archivo, "zip")) && ($_FILES['book_file']['size'] < 10000000))) {
@@ -108,6 +114,7 @@ switch($_GET['page']){
 		}
 		break;
 	case "create":
+		if(IS_PUBLIC==true){header("Location: index.php?page=read");die();}
 		if(!$_POST){header("Location: index.php");die();}
 		if($_POST["book_title"]!="" and $_POST["book_author"]!="" and $_POST["book_description"]!="" and $_POST["book_edition"]!=""){
 			$xml = new SimpleXMLElement("<info></info>");
@@ -160,6 +167,7 @@ switch($_GET['page']){
 		}
 		break;
 	case "edit":
+		if(IS_PUBLIC==true){header("Location: index.php?page=read");die();}
 		$id = addslashes(str_replace('.', '', $_GET['book']));
 		$page = addslashes(str_replace('.', '', $_GET['n']));
 		if(!file_exists('books/'.$id.'/1.xml') or $page==""){
@@ -190,6 +198,7 @@ switch($_GET['page']){
 			die();
 		}
 		if(!$_POST){header("Location: index.php");die();}
+		if(IS_PUBLIC==true){header("Location: index.php?page=read");die();}
 		$repo = ($_POST["repo_url"] != "") ? $_POST['repo_url']:$_POST['repo'];
 		$list = explode("\n",get($repo));
 		echo $template['header'].'<div class="title">Descargar desde un repositorio</div><br/>';
@@ -216,6 +225,7 @@ switch($_GET['page']){
 		die();
 		break;
 	case "delete":
+		if(IS_PUBLIC==true){header("Location: index.php?page=read");die();}
 		$id = addslashes(str_replace('.', '', $_GET['book']));
 		find_files("./books/".$id,"/.*/",'unlink');
 		rmdir("./books/".$id);
@@ -225,6 +235,7 @@ switch($_GET['page']){
 		echo $template['header'], $template['new'], $template['footer'];
 		break;
 	default:
+		if(IS_PUBLIC==true){header("Location: index.php?page=read");die();}
 		echo $template['header'], $template['index'], $template['footer'];
 		break;
 }

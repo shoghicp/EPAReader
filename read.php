@@ -33,6 +33,7 @@ $page = addslashes(str_replace('.', '', $_GET['n']));
 $infoXml = simplexml_load_file("books/".$id."/info.xml");
 
 if(isset($_GET['mode']) and $_GET['mode']=='save'){
+	if(IS_PUBLIC==true){header("Location: index.php?page=read");die();}
 	if($page == "" or $page < 0 ){
 		$page = 1;
 	}
@@ -43,6 +44,7 @@ if(isset($_GET['mode']) and $_GET['mode']=='save'){
 }
 if(isset($_GET['save']) and $_GET['save']!=''){
 	if(isset($_GET['mode']) and $_GET['mode']=='delete'){
+		if(IS_PUBLIC==true){header("Location: index.php?page=read");die();}
 		unlink("./saves/".addslashes(str_replace(array('epas','.'), '', $_GET['save'])).".epas");
 	}else{
 		$save = loadAdventure(file_get_contents("./saves/".addslashes(str_replace(array('epas','.'), '', $_GET['save'])).".epas"));
@@ -123,7 +125,7 @@ if($page != ""){
 		}
 	}
 	if(isset($pageXml->final[0])){
-		echo '<div class=final >Final del libro.<br/>Tu puntacion es <b>'.$_SESSION[$id]['score'].'</b><br/><a href="index.php" style="color:white;">Inicio</a></div>'; 
+		echo '<div class=final >Final del libro.<br/>Tu puntacion es <b>'.$_SESSION[$id]['score'].'</b><br/><a href="index.php?page=read" style="color:white;">Inicio</a></div>'; 
 		$_SESSION[$id] = array('score' => 0, 'flags' => array());
 	}
 	echo '</div><br/><div>';
@@ -134,7 +136,10 @@ if($page != ""){
 		}
 		echo '</table><br/>';
 	}
-	echo '<a href="index.php?page=read&book='.$id.'&n='.$page.'&mode=save" class="button">Guardar progreso</a></div>'.$template['footer'];
+	if(IS_PUBLIC==false){
+		echo '<a href="index.php?page=read&book='.$id.'&n='.$page.'&mode=save" class="button">Guardar progreso</a>';
+	}
+	echo '</div>'.$template['footer'];
 
 }else{
 	$_SESSION[$id] = array('score' => 0, 'flags' => array());
@@ -182,7 +187,10 @@ if($page != ""){
 					}
 					$save = loadAdventure(file_get_contents("./saves/".$item));
 					if($save["book"]==($infoXml->title[0].$infoXml->edition[0])){
-						$saves .= '<br/><br/><a href="index.php?page=read&book='.$id.'&save='.$item.'" style="color:white" class="button">'.$item.'</a>&nbsp;<a href="index.php?page=read&book='.$id.'&save='.$item.'&mode=delete" style="color:red" class="button">x</a>';
+						$saves .= '<br/><br/><a href="index.php?page=read&book='.$id.'&save='.$item.'" style="color:white" class="button">'.$item.'</a>';
+						if(IS_PUBLIC==false){
+							echo '&nbsp;<a href="index.php?page=read&book='.$id.'&save='.$item.'&mode=delete" style="color:red" class="button">x</a>';
+						}
 					}
 				}
 				if($saves != ""){
