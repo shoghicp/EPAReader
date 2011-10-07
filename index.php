@@ -64,7 +64,7 @@ switch($_GET['page']){
 				   }
 			$array = array('booklist' => '', 'repo' => '');
 			if(REPO == true){
-				$array["repo"] = "<br/>Comparte esta coleccion con este repositorio: <input onclick=select() value=\"". EPAREADER_URL ."repo.php\"/>";
+				$array["repo"] = "<br/>Comparte esta coleccion con este repositorio: <input onclick=select() value=\"". EPAREADER_URL ."repo.php\" style=\"background:transparent;color:white;border:1px solid silver;border-radius:5px;\" />";
 			}
 			$count = 0;
 			foreach($books as $arr){
@@ -153,6 +153,7 @@ switch($_GET['page']){
 				$xml->addChild("image", "cover.jpg");
 			}
 			$xml->asXML("./books/".$name."/info.xml");
+			file_put_contents("./books/".$name."/CREATOR","Created by EPAREADER ".VERSION);
 			echo $template['header'], "<div class=title>Hecho</div><br/>El libro ha sido creado<br><br><a href=index.php?page=edit&book=".$name." style=color:white class=button >Editar</a> ", $template['footer'];
 		}else{
 			echo $template['header'], "<div class=title>Error</div><br/>Faltan campos obligatorios por rellenar", $template['footer'];
@@ -167,6 +168,7 @@ switch($_GET['page']){
 		break;
 	case "repo":
 		if(isset($_GET["download"]) and $_GET["download"] != ""){
+			set_time_limit(0);
 			$name = md5(time().mt_rand().$_GET["download"]);
 			if(file_put_contents('./uploads/'.$name.'.epa',get(urldecode($_GET["download"])))){
 				$zip = new ZipArchive;

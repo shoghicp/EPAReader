@@ -37,7 +37,7 @@ if(isset($_GET['mode']) and $_GET['mode']=='save'){
 		$page = 1;
 	}
 	$saveFile = saveAdventure($infoXml->title[0].$infoXml->edition[0], $_SESSION[$id]['score'], $_SESSION[$id]['flags'], $page.".xml");
-	file_put_contents("saves/".time().$infoXml->title[0]."_".$infoXml->edition[0].".epas",$saveFile);
+	file_put_contents("saves/".str_replace('.','',(time().$infoXml->title[0]."_".$infoXml->edition[0])).".epas",$saveFile);
 	echo $template['header'], "<div class=title>Hecho</div><br/>El libro ha sido guardado", $template['footer'];
 	die();
 }

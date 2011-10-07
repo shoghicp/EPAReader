@@ -35,6 +35,13 @@ $template['header'] = <<<HEADER
 <title>EPAReader &bull; Lector de libros "Elige tu propia aventura"</title>
 <link rel="stylesheet" type="text/css" href="style.css" />
 <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="soundmanager2/soundmanager2.js"></script>
+<script type="text/javascript">
+soundManager.url = "soundmanager2/";
+soundManager.onready(function() {
+
+});
+</script>
 <script type="text/javascript" src="functions.js"></script>
 <!-- {meta} -->
 </head>

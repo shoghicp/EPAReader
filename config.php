@@ -27,7 +27,7 @@
 */
 
 define("EPA_VERSION",	"1.0");
-define("VERSION",		"v0.02");
+define("VERSION",		"v0.03");
 define("REPO",			true);//false to deactivate repo
 define("EDIT",			true);//false to create an public site
 define("EPAREADER_URL",		"http://".$_SERVER["SERVER_NAME"].dirname($_SERVER["REQUEST_URI"])."/");
